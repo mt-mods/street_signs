@@ -41,6 +41,12 @@ street_signs.standard_sign_model = {
 			{ -8/16, 12/16, -1/32, 8/16, 17/16, 1/32 },
 			{ -1/16, -8/16, -1/16, 1/16, 12/16, 1/16 },
 		}
+	},
+	yaw = {
+		0,
+		math.pi / -2,
+		math.pi,
+		math.pi / 2,
 	}
 }
 
@@ -380,7 +386,9 @@ street_signs.update_sign = function(pos, fields)
 	local signnode = minetest.get_node(pos)
 	local signname = signnode.name
 	local text = minetest.add_entity(pos, "street_signs:text")
-	text:setyaw(sign_info.yaw)
+	local yaw = street_signs.standard_sign_model.yaw[minetest.get_node(pos).param2 + 1]
+	if not yaw then return end
+	text:setyaw(yaw)
 end
 
 function street_signs.receive_fields(pos, formname, fields, sender)
@@ -411,7 +419,7 @@ minetest.register_node("street_signs:sign_basic", {
 	tiles = { "street_signs_basic.png" },
 	groups = {choppy=2, dig_immediate=2},
 
-	on_construct = function(pos)
+	on_construct = function(pos) 
 		street_signs.construct_sign(pos)
 	end,
 	on_destruct = function(pos)
