@@ -1,8 +1,6 @@
 -- This mod provides basic green two-stack street name signs
 -- forked from signs_lib by Diego Martinez et. al
 
-local enable_colored_metal_signs = true
-
 street_signs = {}
 street_signs.path = minetest.get_modpath(minetest.get_current_modname())
 screwdriver = screwdriver or {}
