@@ -327,9 +327,10 @@ street_signs.construct_sign = function(pos)
 	local meta = minetest.get_meta(pos)
 	meta:set_string(
 		"formspec",
-		"size[6,4]"..
-		"textarea[0,-0.3;6.5,3;text;;${text}]"..
-		"button_exit[2,3.4;2,1;ok;"..S("Write").."]")
+		"size[5,2.25]"..
+		"textarea[0.55,0.1;4.5,1.5;text;;${text}]"..
+		"button_exit[1.5,1.65;2,1;ok;"..S("Write").."]"..
+		"background[-0.20,-0.25;5.41,2.98;street_signs_bg.png]")
 	meta:set_string("infotext", "")
 end
 
