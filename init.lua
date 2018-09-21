@@ -416,7 +416,7 @@ minetest.register_node("street_signs:sign_basic", {
 	mesh = "street_signs_basic.obj",
 	tiles = { "street_signs_basic.png" },
 	groups = {choppy=2, dig_immediate=2},
-
+	default_color = "f",
 	on_construct = function(pos) 
 		street_signs.construct_sign(pos)
 	end,
