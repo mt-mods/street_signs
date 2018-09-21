@@ -1,1 +1,1 @@
-Adds signs with readable text.
+Adds street name signs with readable text.
