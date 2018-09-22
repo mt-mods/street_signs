@@ -490,10 +490,16 @@ local signs_text_on_activate
 signs_text_on_activate = function(self)
 	local pos = self.object:getpos()
 	local meta = minetest.get_meta(pos)
+	local signnode = minetest.get_node(pos)
+	local signname = signnode.name
+	local def = minetest.registered_items[signname]
 	local text = meta:get_string("text")
-	if text and minetest.registered_nodes[minetest.get_node(pos).name] then
+	if text and def and def.entity_info then
 		text = trim_input(text)
 		set_obj_text(self.object, text, nil, pos)
+		self.object:set_properties({
+			mesh = def.entity_info.mesh,
+		})
 	end
 end
 
