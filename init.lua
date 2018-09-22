@@ -538,6 +538,44 @@ if minetest.get_modpath("signs_lib") then
 	})
 end
 
+
+minetest.register_craft({
+	output = "street_signs:sign_basic_top_only",
+	recipe = {
+		{ "dye:green", "default:sign_wall_steel", "dye:green" },
+		{ "dye:white", "default:steel_ingot",     ""          },
+
+	}
+})
+
+minetest.register_craft({
+	output = "street_signs:sign_basic_top_only",
+	recipe = {
+		{ "dye:green", "default:sign_wall_steel", "dye:green" },
+		{ "",          "default:steel_ingot",     "dye:white" },
+	}
+})
+
+if minetest.get_modpath("signs_lib") then
+	minetest.register_craft({
+		output = "street_signs:sign_basic_top_only",
+		recipe = {
+			{ "signs:sign_wall_green" },
+			{ "default:steel_ingot" },
+		}
+	})
+end
+
+minetest.register_craft({
+	output = "street_signs:sign_basic",
+	recipe = {
+		{ "street_signs:sign_basic_top_only" },
+		{ "default:steel_ingot" }
+	}
+})
+
+
+
 -- restore signs' text after /clearobjects and the like, the next time
 -- a block is reloaded by the server.
 
