@@ -103,7 +103,7 @@ local COLORBGW, COLORBGH
 -- width to get the total width of the canvas, so for proportional fonts,
 -- either more or fewer characters may fit on a line.
 local CHARS_PER_LINE = 30
-local NUMBER_OF_LINES = 4
+local NUMBER_OF_LINES = 2
 
 -- 4 rows, max 80 chars per, plus a bit of fudge to
 -- avoid excess trimming (e.g. due to color codes)
@@ -285,8 +285,6 @@ local function make_sign_texture(lines, pos)
 	for i = 1, #lines do
 		if lineno >= NUMBER_OF_LINES then break end
 		local linetex, ln = make_line_texture(lines[i], lineno, pos)
-		table.insert(texture, linetex)
-		local linetex, ln = make_line_texture(lines[i], lineno+1, pos)
 		table.insert(texture, linetex)
 		lineno = ln + 1
 	end
