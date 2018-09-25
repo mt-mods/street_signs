@@ -687,7 +687,7 @@ minetest.register_entity("street_signs:text", {
 	on_activate = signs_text_on_activate,
 })
 
--- craft it!
+-- crafts
 
 minetest.register_craft({
 	output = "street_signs:sign_basic",
@@ -707,18 +707,6 @@ minetest.register_craft({
 	}
 })
 
-if minetest.get_modpath("signs_lib") then
-	minetest.register_craft({
-		output = "street_signs:sign_basic",
-		recipe = {
-			{ "", "signs:sign_wall_green", "" },
-			{ "", "default:steel_ingot",   "" },
-			{ "", "default:steel_ingot",   "" },
-		}
-	})
-end
-
-
 minetest.register_craft({
 	output = "street_signs:sign_basic_top_only",
 	recipe = {
@@ -735,16 +723,6 @@ minetest.register_craft({
 		{ "",          "default:steel_ingot",     "dye:white" },
 	}
 })
-
-if minetest.get_modpath("signs_lib") then
-	minetest.register_craft({
-		output = "street_signs:sign_basic_top_only",
-		recipe = {
-			{ "signs:sign_wall_green" },
-			{ "default:steel_ingot" },
-		}
-	})
-end
 
 minetest.register_craft({
 	output = "street_signs:sign_basic",
@@ -754,6 +732,86 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = "street_signs:sign_highway_small",
+	recipe = {
+		{ "dye:green",               "dye:white",               "dye:green" },
+		{ "dye:green",               "dye:white",               "dye:green" },
+		{ "default:sign_wall_steel", "default:sign_wall_steel", ""          }
+	}
+})
+
+minetest.register_craft({
+	output = "street_signs:sign_highway_small",
+	recipe = {
+		{ "dye:green", "dye:white",               "dye:green"               },
+		{ "dye:green", "dye:white",               "dye:green"               },
+		{ "",          "default:sign_wall_steel", "default:sign_wall_steel" }
+	}
+})
+
+minetest.register_craft({
+	output = "street_signs:sign_highway_medium",
+	recipe = {
+		{ "street_signs:sign_highway_small" },
+		{ "street_signs:sign_highway_small" }
+	}
+})
+
+minetest.register_craft({
+	output = "street_signs:sign_highway_large",
+	recipe = {
+		{ "street_signs:sign_highway_small" },
+		{ "street_signs:sign_highway_small" },
+		{ "street_signs:sign_highway_small" }
+	}
+})
+
+if minetest.get_modpath("signs_lib") then
+
+	minetest.register_craft({
+		output = "street_signs:sign_basic",
+		recipe = {
+			{ "", "signs:sign_wall_green", "" },
+			{ "", "default:steel_ingot",   "" },
+			{ "", "default:steel_ingot",   "" },
+		}
+	})
+
+	minetest.register_craft({
+		output = "street_signs:sign_basic_top_only",
+		recipe = {
+			{ "signs:sign_wall_green" },
+			{ "default:steel_ingot" },
+		}
+	})
+
+	minetest.register_craft({
+		output = "street_signs:sign_highway_small",
+		recipe = {
+			{ "signs:sign_wall_green", "signs:sign_wall_green" },
+		}
+	})
+
+	minetest.register_craft({
+		output = "street_signs:sign_highway_medium",
+		recipe = {
+			{ "signs:sign_wall_green", "signs:sign_wall_green" },
+			{ "signs:sign_wall_green", "signs:sign_wall_green" }
+		}
+	})
+
+	minetest.register_craft({
+		output = "street_signs:sign_highway_large",
+		recipe = {
+			{ "signs:sign_wall_green", "signs:sign_wall_green", "signs:sign_wall_green" },
+			{ "signs:sign_wall_green", "signs:sign_wall_green", "signs:sign_wall_green" }
+		}
+	})
+
+end
+
+-- crafts, highway signs
 
 
 -- restore signs' text after /clearobjects and the like, the next time
