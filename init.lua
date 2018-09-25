@@ -512,154 +512,166 @@ minetest.register_node("street_signs:sign_basic_top_only", {
 	}
 })
 
-cbox = {
-	type = "fixed",
-	fixed = { -0.4375, -0.4375, 0.375, 1.4375, 0.4375, 0.5 }
+local colors = {
+	{ "green",  "f", "dye:green",  "dye:white" },
+	{ "blue",   "f", "dye:blue",   "dye:white" },
+	{ "yellow", "0", "dye:yellow", "dye:black" }
 }
 
-minetest.register_node("street_signs:sign_highway_small", {
-	description = "Small highway sign",
-	inventory_image = "street_signs_highway_small_inv.png",
-	wield_image = "street_signs_highway_small_inv.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "facedir",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_highway_small.obj",
-	tiles = { "street_signs_highway_small.png" },
-	default_color = "f",
-	groups = {choppy=2, dig_immediate=2},
-	on_construct = function(pos)
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	number_of_lines = 3,
-	horiz_scaling = 2,
-	vert_scaling = 1.15,
-	line_spacing = 2,
-	font_size = 31,
-	x_offset = 9,
-	y_offset = 7,
-	chars_per_line = 22,
-	entity_info = {
-		mesh = "street_signs_highway_small_entity.obj",
-		yaw = {
-			0,
-			math.pi / -2,
-			math.pi,
-			math.pi / 2,
-		}
-	}
-})
-cbox = {
-	type = "fixed",
-	fixed = { -0.4375, -0.4375, 0.375, 1.4375, 1.4375, 0.5 }
-}
+for _, c in ipairs(colors) do
 
-minetest.register_node("street_signs:sign_highway_medium", {
-	description = "Medium highway sign",
-	inventory_image = "street_signs_highway_medium_inv.png",
-	wield_image = "street_signs_highway_medium_inv.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "facedir",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_highway_medium.obj",
-	tiles = { "street_signs_highway_medium.png" },
-	default_color = "f",
-	groups = {choppy=2, dig_immediate=2},
-	on_construct = function(pos)
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	number_of_lines = 6,
-	horiz_scaling = 2,
-	vert_scaling = 0.915,
-	line_spacing = 2,
-	font_size = 31,
-	x_offset = 7,
-	y_offset = 10,
-	chars_per_line = 22,
-	entity_info = {
-		mesh = "street_signs_highway_medium_entity.obj",
-		yaw = {
-			0,
-			math.pi / -2,
-			math.pi,
-			math.pi / 2,
-		}
+	cbox = {
+		type = "fixed",
+		fixed = { -0.4375, -0.4375, 0.375, 1.4375, 0.4375, 0.5 }
 	}
-})
 
-cbox = {
-	type = "fixed",
-	fixed = { -0.4375, -0.4375, 0.375, 2.4375, 1.4375, 0.5 }
-}
+	local color = c[1]
+	local defc = c[2]
 
-minetest.register_node("street_signs:sign_highway_large", {
-	description = "Large highway sign",
-	inventory_image = "street_signs_highway_large_inv.png",
-	wield_image = "street_signs_highway_large_inv.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "facedir",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_highway_large.obj",
-	tiles = { "street_signs_highway_large.png" },
-	default_color = "f",
-	groups = {choppy=2, dig_immediate=2},
-	on_construct = function(pos)
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	number_of_lines = 6,
-	horiz_scaling = 2,
-	vert_scaling = 0.915,
-	line_spacing = 2,
-	font_size = 31,
-	x_offset = 12,
-	y_offset = 11,
-	chars_per_line = 25,
-	entity_info = {
-		mesh = "street_signs_highway_large_entity.obj",
-		yaw = {
-			0,
-			math.pi / -2,
-			math.pi,
-			math.pi / 2,
+	minetest.register_node("street_signs:sign_highway_small_"..color, {
+		description = "Small highway sign ("..color..")",
+		inventory_image = "street_signs_highway_small_"..color.."_inv.png",
+		wield_image = "street_signs_highway_small_"..color.."_inv.png",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "facedir",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_highway_small.obj",
+		tiles = { "street_signs_highway_small_"..color..".png" },
+		default_color = defc,
+		groups = {choppy=2, dig_immediate=2},
+		on_construct = function(pos)
+			street_signs.construct_sign(pos)
+		end,
+		on_destruct = function(pos)
+			street_signs.destruct_sign(pos)
+		end,
+		on_receive_fields = function(pos, formname, fields, sender)
+			street_signs.receive_fields(pos, formname, fields, sender)
+		end,
+		on_punch = function(pos, node, puncher)
+			street_signs.update_sign(pos)
+		end,
+		number_of_lines = 3,
+		horiz_scaling = 2,
+		vert_scaling = 1.15,
+		line_spacing = 2,
+		font_size = 31,
+		x_offset = 9,
+		y_offset = 7,
+		chars_per_line = 22,
+		entity_info = {
+			mesh = "street_signs_highway_small_entity.obj",
+			yaw = {
+				0,
+				math.pi / -2,
+				math.pi,
+				math.pi / 2,
+			}
 		}
+	})
+	cbox = {
+		type = "fixed",
+		fixed = { -0.4375, -0.4375, 0.375, 1.4375, 1.4375, 0.5 }
 	}
-})
+
+	minetest.register_node("street_signs:sign_highway_medium_"..color, {
+		description = "Medium highway sign ("..color..")",
+		inventory_image = "street_signs_highway_medium_"..color.."_inv.png",
+		wield_image = "street_signs_highway_medium_"..color.."_inv.png",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "facedir",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_highway_medium.obj",
+		tiles = { "street_signs_highway_medium_"..color..".png" },
+		default_color = defc,
+		groups = {choppy=2, dig_immediate=2},
+		on_construct = function(pos)
+			street_signs.construct_sign(pos)
+		end,
+		on_destruct = function(pos)
+			street_signs.destruct_sign(pos)
+		end,
+		on_receive_fields = function(pos, formname, fields, sender)
+			street_signs.receive_fields(pos, formname, fields, sender)
+		end,
+		on_punch = function(pos, node, puncher)
+			street_signs.update_sign(pos)
+		end,
+		number_of_lines = 6,
+		horiz_scaling = 2,
+		vert_scaling = 0.915,
+		line_spacing = 2,
+		font_size = 31,
+		x_offset = 7,
+		y_offset = 10,
+		chars_per_line = 22,
+		entity_info = {
+			mesh = "street_signs_highway_medium_entity.obj",
+			yaw = {
+				0,
+				math.pi / -2,
+				math.pi,
+				math.pi / 2,
+			}
+		}
+	})
+
+	cbox = {
+		type = "fixed",
+		fixed = { -0.4375, -0.4375, 0.375, 2.4375, 1.4375, 0.5 }
+	}
+
+	minetest.register_node("street_signs:sign_highway_large_"..color, {
+		description = "Large highway sign ("..color..")",
+		inventory_image = "street_signs_highway_large_"..color.."_inv.png",
+		wield_image = "street_signs_highway_large_"..color.."_inv.png",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "facedir",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_highway_large.obj",
+		tiles = { "street_signs_highway_large_"..color..".png" },
+		default_color = defc,
+		groups = {choppy=2, dig_immediate=2},
+		on_construct = function(pos)
+			street_signs.construct_sign(pos)
+		end,
+		on_destruct = function(pos)
+			street_signs.destruct_sign(pos)
+		end,
+		on_receive_fields = function(pos, formname, fields, sender)
+			street_signs.receive_fields(pos, formname, fields, sender)
+		end,
+		on_punch = function(pos, node, puncher)
+			street_signs.update_sign(pos)
+		end,
+		number_of_lines = 6,
+		horiz_scaling = 2,
+		vert_scaling = 0.915,
+		line_spacing = 2,
+		font_size = 31,
+		x_offset = 12,
+		y_offset = 11,
+		chars_per_line = 25,
+		entity_info = {
+			mesh = "street_signs_highway_large_entity.obj",
+			yaw = {
+				0,
+				math.pi / -2,
+				math.pi,
+				math.pi / 2,
+			}
+		}
+	})
+end
 
 local signs_text_on_activate
 
@@ -732,40 +744,48 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
-	output = "street_signs:sign_highway_small",
-	recipe = {
-		{ "dye:green",               "dye:white",               "dye:green" },
-		{ "dye:green",               "dye:white",               "dye:green" },
-		{ "default:sign_wall_steel", "default:sign_wall_steel", ""          }
-	}
-})
+for _, c in ipairs(colors) do
 
-minetest.register_craft({
-	output = "street_signs:sign_highway_small",
-	recipe = {
-		{ "dye:green", "dye:white",               "dye:green"               },
-		{ "dye:green", "dye:white",               "dye:green"               },
-		{ "",          "default:sign_wall_steel", "default:sign_wall_steel" }
-	}
-})
+	local color = c[1]
+	local defc =  c[2]
+	local dye1 =  c[3]
+	local dye2 =  c[4]
 
-minetest.register_craft({
-	output = "street_signs:sign_highway_medium",
-	recipe = {
-		{ "street_signs:sign_highway_small" },
-		{ "street_signs:sign_highway_small" }
-	}
-})
+	minetest.register_craft({
+		output = "street_signs:sign_highway_small_"..color,
+		recipe = {
+			{ dye1,                      dye2,                      dye1 },
+			{ dye1,                      dye2,                      dye1 },
+			{ "default:sign_wall_steel", "default:sign_wall_steel", ""   }
+		}
+	})
 
-minetest.register_craft({
-	output = "street_signs:sign_highway_large",
-	recipe = {
-		{ "street_signs:sign_highway_small" },
-		{ "street_signs:sign_highway_small" },
-		{ "street_signs:sign_highway_small" }
-	}
-})
+	minetest.register_craft({
+		output = "street_signs:sign_highway_small_"..color,
+		recipe = {
+			{ dye1, dye2,                      dye1                      },
+			{ dye1, dye2,                      dye1                      },
+			{ "",   "default:sign_wall_steel", "default:sign_wall_steel" }
+		}
+	})
+
+	minetest.register_craft({
+		output = "street_signs:sign_highway_medium_"..color,
+		recipe = {
+			{ "street_signs:sign_highway_small_"..color },
+			{ "street_signs:sign_highway_small_"..color }
+		}
+	})
+
+	minetest.register_craft({
+		output = "street_signs:sign_highway_large_"..color,
+		recipe = {
+			{ "street_signs:sign_highway_small_"..color },
+			{ "street_signs:sign_highway_small_"..color },
+			{ "street_signs:sign_highway_small_"..color }
+		}
+	})
+end
 
 if minetest.get_modpath("signs_lib") then
 
@@ -786,29 +806,35 @@ if minetest.get_modpath("signs_lib") then
 		}
 	})
 
-	minetest.register_craft({
-		output = "street_signs:sign_highway_small",
-		recipe = {
-			{ "signs:sign_wall_green", "signs:sign_wall_green" },
-		}
-	})
+	for _, c in ipairs(colors) do
 
-	minetest.register_craft({
-		output = "street_signs:sign_highway_medium",
-		recipe = {
-			{ "signs:sign_wall_green", "signs:sign_wall_green" },
-			{ "signs:sign_wall_green", "signs:sign_wall_green" }
-		}
-	})
+		local color = c[1]
+		local defc =  c[2]
 
-	minetest.register_craft({
-		output = "street_signs:sign_highway_large",
-		recipe = {
-			{ "signs:sign_wall_green", "signs:sign_wall_green", "signs:sign_wall_green" },
-			{ "signs:sign_wall_green", "signs:sign_wall_green", "signs:sign_wall_green" }
-		}
-	})
+		minetest.register_craft({
+			output = "street_signs:sign_highway_small_"..color,
+			recipe = {
+				{ "signs:sign_wall_"..color, "signs:sign_wall_"..color },
+			}
+		})
 
+		minetest.register_craft({
+			output = "street_signs:sign_highway_medium_"..color,
+			recipe = {
+				{ "signs:sign_wall_"..color, "signs:sign_wall_"..color },
+				{ "signs:sign_wall_"..color, "signs:sign_wall_"..color }
+			}
+		})
+
+		minetest.register_craft({
+			output = "street_signs:sign_highway_large_"..color,
+			recipe = {
+				{ "signs:sign_wall_"..color, "signs:sign_wall_"..color, "signs:sign_wall_"..color },
+				{ "signs:sign_wall_"..color, "signs:sign_wall_"..color, "signs:sign_wall_"..color }
+			}
+		})
+
+	end
 end
 
 -- crafts, highway signs
