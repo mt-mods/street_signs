@@ -443,8 +443,8 @@ minetest.register_node("street_signs:sign_basic", {
 	vert_scaling = 1,
 	line_spacing = 6,
 	font_size = 15,
-	x_offset = 6,
-	y_offset = 4,
+	x_offset = 1,
+	y_offset = 3,
 	chars_per_line = 30,
 	entity_info = {
 		mesh = "street_signs_basic_entity.obj",
@@ -498,8 +498,8 @@ minetest.register_node("street_signs:sign_basic_top_only", {
 	vert_scaling = 1,
 	line_spacing = 6,
 	font_size = 15,
-	x_offset = 6,
-	y_offset = 4,
+	x_offset = 1,
+	y_offset = 3,
 	chars_per_line = 30,
 	entity_info = {
 		mesh = "street_signs_basic_top_only_entity.obj",
@@ -544,12 +544,12 @@ minetest.register_node("street_signs:sign_highway_medium", {
 		street_signs.update_sign(pos)
 	end,
 	number_of_lines = 6,
-	horiz_scaling = 2.8,
-	vert_scaling = 2.8,
+	horiz_scaling = 2,
+	vert_scaling = 1.12,
 	line_spacing = 2,
 	font_size = 31,
-	x_offset = 25,
-	y_offset = 36,
+	x_offset = 2,
+	y_offset = 11,
 	chars_per_line = 22,
 	entity_info = {
 		mesh = "street_signs_highway_medium_entity.obj",
