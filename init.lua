@@ -673,6 +673,154 @@ for _, c in ipairs(colors) do
 	})
 end
 
+cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, 0.4375, 0.5, 0.5, 0.5 }
+}
+
+minetest.register_node("street_signs:sign_us_route", {
+	description = "Basic \"US Route\" sign",
+	paramtype = "light",
+	sunlight_propagates = true,
+	paramtype2 = "facedir",
+	drawtype = "mesh",
+	node_box = cbox,
+	selection_box = cbox,
+	mesh = "street_signs_us_route.obj",
+	tiles = { "street_signs_us_route.png" },
+	inventory_image = "street_signs_us_route_inv.png",
+	groups = {choppy=2, dig_immediate=2},
+	default_color = "0",
+	on_construct = function(pos) 
+		street_signs.construct_sign(pos)
+	end,
+	on_destruct = function(pos)
+		street_signs.destruct_sign(pos)
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		street_signs.receive_fields(pos, formname, fields, sender)
+	end,
+	on_punch = function(pos, node, puncher)
+		street_signs.update_sign(pos)
+	end,
+	number_of_lines = 1,
+	horiz_scaling = 3.5,
+	vert_scaling = 1.4,
+	line_spacing = 6,
+	font_size = 31,
+	x_offset = 8,
+	y_offset = 12,
+	chars_per_line = 3,
+	entity_info = {
+		mesh = "street_signs_us_route_entity.obj",
+		yaw = {
+			0,
+			math.pi / -2,
+			math.pi,
+			math.pi / 2,
+		}
+	}
+})
+
+cbox = {
+	type = "fixed",
+	fixed = { -0.45, -0.45, 0.4375, 0.45, 0.45, 0.5 }
+}
+
+minetest.register_node("street_signs:sign_us_interstate", {
+	description = "Basic US \"Interstate\" sign",
+	paramtype = "light",
+	sunlight_propagates = true,
+	paramtype2 = "facedir",
+	drawtype = "mesh",
+	node_box = cbox,
+	selection_box = cbox,
+	mesh = "street_signs_us_interstate.obj",
+	tiles = { "street_signs_us_interstate.png" },
+	inventory_image = "street_signs_us_interstate_inv.png",
+	groups = {choppy=2, dig_immediate=2},
+	default_color = "f",
+	on_construct = function(pos) 
+		street_signs.construct_sign(pos)
+	end,
+	on_destruct = function(pos)
+		street_signs.destruct_sign(pos)
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		street_signs.receive_fields(pos, formname, fields, sender)
+	end,
+	on_punch = function(pos, node, puncher)
+		street_signs.update_sign(pos)
+	end,
+	number_of_lines = 1,
+	horiz_scaling = 4.5,
+	vert_scaling = 1.4,
+	line_spacing = 6,
+	font_size = 31,
+	x_offset = 8,
+	y_offset = 14,
+	chars_per_line = 3,
+	entity_info = {
+		mesh = "street_signs_us_interstate_entity.obj",
+		yaw = {
+			0,
+			math.pi / -2,
+			math.pi,
+			math.pi / 2,
+		}
+	}
+})
+
+
+cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, 0.4375, 0.5, 0.5, 0.5 }
+}
+
+minetest.register_node("street_signs:sign_warning", {
+	description = "Basic US diamond-shaped \"warning\" sign",
+	paramtype = "light",
+	sunlight_propagates = true,
+	paramtype2 = "facedir",
+	drawtype = "mesh",
+	node_box = cbox,
+	selection_box = cbox,
+	mesh = "street_signs_warning.obj",
+	tiles = { "street_signs_warning.png" },
+	inventory_image = "street_signs_warning_inv.png",
+	groups = {choppy=2, dig_immediate=2},
+	default_color = "0",
+	on_construct = function(pos) 
+		street_signs.construct_sign(pos)
+	end,
+	on_destruct = function(pos)
+		street_signs.destruct_sign(pos)
+	end,
+	on_receive_fields = function(pos, formname, fields, sender)
+		street_signs.receive_fields(pos, formname, fields, sender)
+	end,
+	on_punch = function(pos, node, puncher)
+		street_signs.update_sign(pos)
+	end,
+	number_of_lines = 3,
+	horiz_scaling = 1.75,
+	vert_scaling = 1.4,
+	line_spacing = 1,
+	font_size = 15,
+	x_offset = 6,
+	y_offset = 10,
+	chars_per_line = 15,
+	entity_info = {
+		mesh = "street_signs_warning_entity.obj",
+		yaw = {
+			0,
+			math.pi / -2,
+			math.pi,
+			math.pi / 2,
+		}
+	}
+})
+
 local signs_text_on_activate
 
 signs_text_on_activate = function(self)
