@@ -15,9 +15,32 @@ street_signs.gettext = S
 -- text encoding
 dofile(street_signs.path .. "/encoding.lua");
 
-street_signs.wallmounted_rotate = function(pos, node, user, mode, new_param2)
-	if mode ~= screwdriver.ROTATE_AXIS then return false end
-	minetest.swap_node(pos, {name = node.name, param2 = (node.param2 + 1) % 6})
+local wall_dir_change = {
+	[0] = 2,
+	2,
+	5,
+	4,
+	2,
+	3,
+}
+
+street_signs.wallmounted_rotate = function(pos, node, user, mode)
+	if mode ~= screwdriver.ROTATE_FACE then return false end
+	minetest.swap_node(pos, { name = node.name, param2 = wall_dir_change[node.param2 % 6] })
+	for _, v in ipairs(minetest.get_objects_inside_radius(pos, 0.5)) do
+		local e = v:get_luaentity()
+		if e and e.name == "street_signs:text" then
+			v:remove()
+		end
+	end
+	street_signs.update_sign(pos)
+	return true
+end
+
+street_signs.facedir_rotate = function(pos, node, user, mode)
+	if mode ~= screwdriver.ROTATE_FACE then return false end
+	newparam2 = ((node.param2 % 6 ) == 0) and 1 or 0
+	minetest.swap_node(pos, { name = node.name, param2 = newparam2 })
 	for _, v in ipairs(minetest.get_objects_inside_radius(pos, 0.5)) do
 		local e = v:get_luaentity()
 		if e and e.name == "street_signs:text" then
@@ -460,6 +483,7 @@ minetest.register_node("street_signs:sign_basic", {
 	on_punch = function(pos, node, puncher)
 		street_signs.update_sign(pos)
 	end,
+	on_rotate = street_signs.facedir_rotate,
 	number_of_lines = 2,
 	horiz_scaling = 1,
 	vert_scaling = 1,
@@ -510,6 +534,7 @@ minetest.register_node("street_signs:sign_basic_top_only", {
 	on_punch = function(pos, node, puncher)
 		street_signs.update_sign(pos)
 	end,
+	on_rotate = street_signs.facedir_rotate,
 	number_of_lines = 2,
 	horiz_scaling = 1,
 	vert_scaling = 1,
@@ -582,6 +607,7 @@ for _, c in ipairs(colors) do
 		on_punch = function(pos, node, puncher)
 			street_signs.update_sign(pos)
 		end,
+		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 3,
 		horiz_scaling = 2,
 		vert_scaling = 1.15,
@@ -626,6 +652,7 @@ for _, c in ipairs(colors) do
 		on_punch = function(pos, node, puncher)
 			street_signs.update_sign(pos)
 		end,
+		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 6,
 		horiz_scaling = 2,
 		vert_scaling = 0.915,
@@ -671,6 +698,7 @@ for _, c in ipairs(colors) do
 		on_punch = function(pos, node, puncher)
 			street_signs.update_sign(pos)
 		end,
+		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 6,
 		horiz_scaling = 2,
 		vert_scaling = 0.915,
@@ -719,6 +747,7 @@ minetest.register_node("street_signs:sign_us_route", {
 	on_punch = function(pos, node, puncher)
 		street_signs.update_sign(pos)
 	end,
+	on_rotate = street_signs.wallmounted_rotate,
 	number_of_lines = 1,
 	horiz_scaling = 3.5,
 	vert_scaling = 1.4,
@@ -763,6 +792,7 @@ minetest.register_node("street_signs:sign_us_interstate", {
 	on_punch = function(pos, node, puncher)
 		street_signs.update_sign(pos)
 	end,
+	on_rotate = street_signs.wallmounted_rotate,
 	number_of_lines = 1,
 	horiz_scaling = 4.5,
 	vert_scaling = 1.4,
@@ -812,6 +842,7 @@ minetest.register_node("street_signs:sign_warning_3_line", {
 	on_punch = function(pos, node, puncher)
 		street_signs.update_sign(pos)
 	end,
+	on_rotate = street_signs.wallmounted_rotate,
 	number_of_lines = 3,
 	horiz_scaling = 1.75,
 	vert_scaling = 1.75,
@@ -851,6 +882,7 @@ minetest.register_node("street_signs:sign_warning_4_line", {
 	on_punch = function(pos, node, puncher)
 		street_signs.update_sign(pos)
 	end,
+	on_rotate = street_signs.wallmounted_rotate,
 	number_of_lines = 4,
 	horiz_scaling = 1.75,
 	vert_scaling = 1.75,
@@ -890,6 +922,7 @@ minetest.register_node("street_signs:sign_warning_orange_3_line", {
 	on_punch = function(pos, node, puncher)
 		street_signs.update_sign(pos)
 	end,
+	on_rotate = street_signs.wallmounted_rotate,
 	number_of_lines = 3,
 	horiz_scaling = 1.75,
 	vert_scaling = 1.75,
@@ -929,6 +962,7 @@ minetest.register_node("street_signs:sign_warning_orange_4_line", {
 	on_punch = function(pos, node, puncher)
 		street_signs.update_sign(pos)
 	end,
+	on_rotate = street_signs.wallmounted_rotate,
 	number_of_lines = 4,
 	horiz_scaling = 1.75,
 	vert_scaling = 1.75,
