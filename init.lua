@@ -379,7 +379,7 @@ street_signs.update_sign = function(pos, fields)
 	local signnode = minetest.get_node(pos)
 	local signname = signnode.name
 	local def = minetest.registered_items[signname]
-	if not def.entity_info or not def.entity_info.yaw[signnode.param2 + 1]then return end
+	if not def.entity_info or not def.entity_info.yaw[signnode.param2 + 1] then return end
 	local obj = minetest.add_entity(pos, "street_signs:text")
 
 	obj:setyaw(def.entity_info.yaw[signnode.param2 + 1])
@@ -403,6 +403,8 @@ function street_signs.receive_fields(pos, formname, fields, sender)
 		street_signs.update_sign(pos, fields)
 	end
 end
+
+local lbm_restore_nodes = {}
 
 local cbox = {
 	type = "fixed",
@@ -430,6 +432,9 @@ local wmyaw = {
 	0,
 	math.pi,
 }
+
+table.insert(lbm_restore_nodes, "street_signs:sign_basic")
+table.insert(lbm_restore_nodes, "street_signs:sign_basic_top_only")
 
 minetest.register_node("street_signs:sign_basic", {
 	description = "Basic street name sign",
@@ -546,6 +551,10 @@ for _, c in ipairs(colors) do
 
 	local color = c[1]
 	local defc = c[2]
+
+	table.insert(lbm_restore_nodes, "street_signs:sign_highway_small_"..color)
+	table.insert(lbm_restore_nodes, "street_signs:sign_highway_medium_"..color)
+	table.insert(lbm_restore_nodes, "street_signs:sign_highway_large_"..color)
 
 	minetest.register_node("street_signs:sign_highway_small_"..color, {
 		description = "Small highway sign ("..color..")",
@@ -682,6 +691,9 @@ cbox = {
 	wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
 }
 
+table.insert(lbm_restore_nodes, "street_signs:sign_us_route")
+table.insert(lbm_restore_nodes, "street_signs:sign_us_interstate")
+
 minetest.register_node("street_signs:sign_us_route", {
 	description = "Basic \"US Route\" sign",
 	paramtype = "light",
@@ -769,6 +781,11 @@ cbox = {
 	type = "wallmounted",
 	wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
 }
+
+table.insert(lbm_restore_nodes, "street_signs:sign_warning_3_line")
+table.insert(lbm_restore_nodes, "street_signs:sign_warning_4_line")
+table.insert(lbm_restore_nodes, "street_signs:sign_warning_orange_3_line")
+table.insert(lbm_restore_nodes, "street_signs:sign_warning_orange_4_line")
 
 minetest.register_node("street_signs:sign_warning_3_line", {
 	description = "Basic US diamond-shaped \"warning\" sign (3-line, yellow)",
@@ -1091,18 +1108,16 @@ if minetest.get_modpath("signs_lib") then
 	end
 end
 
--- crafts, highway signs
-
-
 -- restore signs' text after /clearobjects and the like, the next time
 -- a block is reloaded by the server.
 
 minetest.register_lbm({
-	nodenames = { "street_signs:sign_basic" },
+	nodenames = lbm_restore_nodes,
 	name = "street_signs:restore_sign_text",
 	label = "Restore sign text",
 	run_at_every_load = true,
 	action = function(pos, node)
+		print("LBM call update sign on "..minetest.get_node(pos).name)
 		street_signs.update_sign(pos)
 	end
 })
