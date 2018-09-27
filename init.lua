@@ -794,7 +794,6 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_us_interstate"
 	})
 
-
 	if m ~= "" then
 		cbox = {
 			type = "wallmounted",
@@ -951,6 +950,57 @@ for _, m in ipairs({"", "_onpole"}) do
 		},
 		drop = "street_signs:sign_warning_orange_4_line"
 	})
+
+	if m ~= "" then
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.8125, -0.625, -0.47, -0.75, 0.625, 0.47 }
+		}
+	else
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }
+		}
+	end
+
+	table.insert(lbm_restore_nodes, "street_signs:sign_speed_limit"..m)
+
+	minetest.register_node("street_signs:sign_speed_limit"..m, {
+		description = "Basic speed limit sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x48"..m..".obj",
+		tiles = { "street_signs_speed_limit.png" },
+		inventory_image = "street_signs_speed_limit_inv.png",
+		wield_image = "street_signs_speed_limit_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		after_place_node = after_place_node,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 2.65,
+		vert_scaling = 2.3,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 37,
+		chars_per_line = 4,
+		entity_info = {
+			mesh = "street_signs_regulatory_36x48_entity"..m..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_speed_limit"
+	})
+
+-- below this point are image-only signs (i.e. no user-input)
 
 	minetest.register_node("street_signs:sign_stop"..m, {
 		description = "Stop sign",
