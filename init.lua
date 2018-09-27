@@ -1225,12 +1225,12 @@ for _, m in ipairs({"", "_onpole"}) do
 	if m ~= "" then
 		cbox = {
 			type = "wallmounted",
-			wall_side = { -0.8125, -0.47, -0.47, -0.75, 0.47, 0.47 }
+			wall_side = { -0.8125, -0.4, -0.5625, -0.75, 0.4, 0.5625 }
 		}
 	else
 		cbox = {
 			type = "wallmounted",
-			wall_side = { -0.5, -0.47, -0.47, -0.4375, 0.47, 0.47 }
+			wall_side = { -0.5, -0.4, -0.5625, -0.4375, 0.4, 0.5625 }
 		}
 	end
 
@@ -1251,6 +1251,26 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_do_not_enter"
 	})
+
+	minetest.register_node("street_signs:sign_wrong_way"..m, {
+		description = "Wrong way sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_42x30"..m..".obj",
+		tiles = { "street_signs_wrong_way.png" },
+		inventory_image = "street_signs_wrong_way_inv.png",
+		wield_image = "street_signs_wrong_way_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_wrong_way"
+	})
+
+
 
 end
 
