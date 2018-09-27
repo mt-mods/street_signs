@@ -456,6 +456,19 @@ local wmyaw = {
 	math.pi,
 }
 
+local on_construct =function(pos) 
+	street_signs.construct_sign(pos)
+end
+local on_destruct = function(pos)
+	street_signs.destruct_sign(pos)
+end
+local on_receive_fields = function(pos, formname, fields, sender)
+	street_signs.receive_fields(pos, formname, fields, sender)
+end
+local on_punch = function(pos, node, puncher)
+	street_signs.update_sign(pos)
+end
+
 table.insert(lbm_restore_nodes, "street_signs:sign_basic")
 table.insert(lbm_restore_nodes, "street_signs:sign_basic_top_only")
 
@@ -471,18 +484,10 @@ minetest.register_node("street_signs:sign_basic", {
 	tiles = { "street_signs_basic.png" },
 	groups = {choppy=2, dig_immediate=2},
 	default_color = "f",
-	on_construct = function(pos) 
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
+	on_construct = on_construct,
+	on_destruct = on_destruct,
+	on_receive_fields = on_receive_fields,
+	on_punch = on_punch,
 	on_rotate = street_signs.facedir_rotate,
 	number_of_lines = 2,
 	horiz_scaling = 1,
@@ -522,18 +527,10 @@ minetest.register_node("street_signs:sign_basic_top_only", {
 	tiles = { "street_signs_basic.png" },
 	groups = {choppy=2, dig_immediate=2},
 	default_color = "f",
-	on_construct = function(pos) 
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
+	on_construct = on_construct,
+	on_destruct = on_destruct,
+	on_receive_fields = on_receive_fields,
+	on_punch = on_punch,
 	on_rotate = street_signs.facedir_rotate,
 	number_of_lines = 2,
 	horiz_scaling = 1,
@@ -563,17 +560,6 @@ for _, c in ipairs(colors) do
 		wall_side = { -0.5, -0.4375, -0.4375, -0.375, 0.4375, 1.4375 }
 	}
 
---[[
-		node_box = {
-			type = "wallmounted",
-			wall_top    = {-0.4375, 0.4375, -0.3125, 0.4375, 0.5, 0.3125},
-			wall_bottom = {-0.4375, -0.5, -0.3125, 0.4375, -0.4375, 0.3125},
-
-			wall_side   = {-0.5, -0.3125, -0.4375, -0.4375, 0.3125, 0.4375},
-		},
-
-]]--
-
 	local color = c[1]
 	local defc = c[2]
 
@@ -595,18 +581,10 @@ for _, c in ipairs(colors) do
 		tiles = { "street_signs_highway_small_"..color..".png" },
 		default_color = defc,
 		groups = {choppy=2, dig_immediate=2},
-		on_construct = function(pos)
-			street_signs.construct_sign(pos)
-		end,
-		on_destruct = function(pos)
-			street_signs.destruct_sign(pos)
-		end,
-		on_receive_fields = function(pos, formname, fields, sender)
-			street_signs.receive_fields(pos, formname, fields, sender)
-		end,
-		on_punch = function(pos, node, puncher)
-			street_signs.update_sign(pos)
-		end,
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
 		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 3,
 		horiz_scaling = 2,
@@ -640,18 +618,10 @@ for _, c in ipairs(colors) do
 		tiles = { "street_signs_highway_medium_"..color..".png" },
 		default_color = defc,
 		groups = {choppy=2, dig_immediate=2},
-		on_construct = function(pos)
-			street_signs.construct_sign(pos)
-		end,
-		on_destruct = function(pos)
-			street_signs.destruct_sign(pos)
-		end,
-		on_receive_fields = function(pos, formname, fields, sender)
-			street_signs.receive_fields(pos, formname, fields, sender)
-		end,
-		on_punch = function(pos, node, puncher)
-			street_signs.update_sign(pos)
-		end,
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
 		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 6,
 		horiz_scaling = 2,
@@ -686,18 +656,10 @@ for _, c in ipairs(colors) do
 		tiles = { "street_signs_highway_large_"..color..".png" },
 		default_color = defc,
 		groups = {choppy=2, dig_immediate=2},
-		on_construct = function(pos)
-			street_signs.construct_sign(pos)
-		end,
-		on_destruct = function(pos)
-			street_signs.destruct_sign(pos)
-		end,
-		on_receive_fields = function(pos, formname, fields, sender)
-			street_signs.receive_fields(pos, formname, fields, sender)
-		end,
-		on_punch = function(pos, node, puncher)
-			street_signs.update_sign(pos)
-		end,
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
 		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 6,
 		horiz_scaling = 2,
@@ -714,269 +676,277 @@ for _, c in ipairs(colors) do
 	})
 end
 
-cbox = {
-	type = "wallmounted",
-	wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
-}
+for _, m in ipairs({"", "_onpole"}) do
 
-table.insert(lbm_restore_nodes, "street_signs:sign_us_route")
-table.insert(lbm_restore_nodes, "street_signs:sign_us_interstate")
-
-minetest.register_node("street_signs:sign_us_route", {
-	description = "Basic \"US Route\" sign",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "wallmounted",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_us_route.obj",
-	tiles = { "street_signs_us_route.png" },
-	inventory_image = "street_signs_us_route_inv.png",
-	groups = {choppy=2, dig_immediate=2},
-	default_color = "0",
-	on_construct = function(pos) 
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	on_rotate = street_signs.wallmounted_rotate,
-	number_of_lines = 1,
-	horiz_scaling = 3.5,
-	vert_scaling = 1.4,
-	line_spacing = 6,
-	font_size = 31,
-	x_offset = 8,
-	y_offset = 12,
-	chars_per_line = 3,
-	entity_info = {
-		mesh = "street_signs_us_route_entity.obj",
-		yaw = wmyaw
+	cbox = {
+		type = "wallmounted",
+		wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
 	}
-})
 
-cbox = {
-	type = "wallmounted",
-	wall_side = { -0.5, -0.45, -0.45, -0.4375, 0.45, 0.45 }
-}
+	local nci = nil
+	local on_rotate = street_signs.wallmounted_rotate
+	local after_place_node = function(pos, placer, itemstack, pointed_thing)
+		local ppos = minetest.get_pointed_thing_position(pointed_thing)
+		local pnode = minetest.get_node(ppos)
+		if pnode.name == "gloopblocks:fence_steel"
+		  or pnode.name == "homedecor:fence_brass"
+		  or pnode.name == "homedecor:fence_wrought_iron"
+		  or pnode.name == "coloredwood:fence"
+		  or string.find(pnode.name, "bobblocks.*pole") 
+		  or string.find(pnode.name, "default:fence_")
+		  or (pnode.name == "streets:bigpole" and pnode.param2 < 4)
+		  or (pnode.name == "streets:bigpole" and pnode.param2 > 19 and pnode.param2 < 24) then
+			local node = minetest.get_node(pos)
+			minetest.swap_node(pos, {name = itemstack:get_name().."_onpole", param2 = node.param2})
+		end
+	end
 
-minetest.register_node("street_signs:sign_us_interstate", {
-	description = "Basic US \"Interstate\" sign",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "wallmounted",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_us_interstate.obj",
-	tiles = { "street_signs_us_interstate.png" },
-	inventory_image = "street_signs_us_interstate_inv.png",
-	groups = {choppy=2, dig_immediate=2},
-	default_color = "f",
-	on_construct = function(pos) 
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	on_rotate = street_signs.wallmounted_rotate,
-	number_of_lines = 1,
-	horiz_scaling = 4.5,
-	vert_scaling = 1.4,
-	line_spacing = 6,
-	font_size = 31,
-	x_offset = 8,
-	y_offset = 14,
-	chars_per_line = 3,
-	entity_info = {
-		mesh = "street_signs_us_interstate_entity.obj",
-		yaw = wmyaw
-	}
-})
+	if m ~= "" then
+		nci = 1
+		on_rotate = nil
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.8125, -0.5, -0.5, -0.75, 0.5, 0.5 }
+		}
+	end
 
-cbox = {
-	type = "wallmounted",
-	wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
-}
+	table.insert(lbm_restore_nodes, "street_signs:sign_us_route"..m)
+	table.insert(lbm_restore_nodes, "street_signs:sign_us_interstate"..m)
 
-table.insert(lbm_restore_nodes, "street_signs:sign_warning_3_line")
-table.insert(lbm_restore_nodes, "street_signs:sign_warning_4_line")
-table.insert(lbm_restore_nodes, "street_signs:sign_warning_orange_3_line")
-table.insert(lbm_restore_nodes, "street_signs:sign_warning_orange_4_line")
+	minetest.register_node("street_signs:sign_us_route"..m, {
+		description = "Basic \"US Route\" sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_us_route"..m..".obj",
+		tiles = { "street_signs_us_route.png" },
+		inventory_image = "street_signs_us_route_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		after_place_node = after_place_node,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 3.5,
+		vert_scaling = 1.4,
+		line_spacing = 6,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 12,
+		chars_per_line = 3,
+		entity_info = {
+			mesh = "street_signs_us_route_entity"..m..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_us_route"
+	})
 
-minetest.register_node("street_signs:sign_warning_3_line", {
-	description = "Basic US diamond-shaped \"warning\" sign (3-line, yellow)",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "wallmounted",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_warning.obj",
-	tiles = { "street_signs_warning.png" },
-	inventory_image = "street_signs_warning_3_line_inv.png",
-	groups = {choppy=2, dig_immediate=2},
-	default_color = "0",
-	on_construct = function(pos) 
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	on_rotate = street_signs.wallmounted_rotate,
-	number_of_lines = 3,
-	horiz_scaling = 1.75,
-	vert_scaling = 1.75,
-	line_spacing = 1,
-	font_size = 15,
-	x_offset = 6,
-	y_offset = 19,
-	chars_per_line = 15,
-	entity_info = {
-		mesh = "street_signs_warning_entity.obj",
-		yaw = wmyaw
-	}
-})
+	if m ~= "" then
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.8125, -0.45, -0.45, -0.75, 0.45, 0.45 }
+		}
+	else
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.5, -0.45, -0.45, -0.4375, 0.45, 0.45 }
+		}
+	end
 
-minetest.register_node("street_signs:sign_warning_4_line", {
-	description = "Basic US diamond-shaped \"warning\" sign (4-line, yellow)",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "wallmounted",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_warning.obj",
-	tiles = { "street_signs_warning.png" },
-	inventory_image = "street_signs_warning_4_line_inv.png",
-	groups = {choppy=2, dig_immediate=2},
-	default_color = "0",
-	on_construct = function(pos) 
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	on_rotate = street_signs.wallmounted_rotate,
-	number_of_lines = 4,
-	horiz_scaling = 1.75,
-	vert_scaling = 1.75,
-	line_spacing = 1,
-	font_size = 15,
-	x_offset = 6,
-	y_offset = 25,
-	chars_per_line = 15,
-	entity_info = {
-		mesh = "street_signs_warning_entity.obj",
-		yaw = wmyaw
-	}
-})
+	minetest.register_node("street_signs:sign_us_interstate"..m, {
+		description = "Basic US \"Interstate\" sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_us_interstate"..m..".obj",
+		tiles = { "street_signs_us_interstate.png" },
+		inventory_image = "street_signs_us_interstate_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "f",
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		after_place_node = after_place_node,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 4.5,
+		vert_scaling = 1.4,
+		line_spacing = 6,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 14,
+		chars_per_line = 3,
+		entity_info = {
+			mesh = "street_signs_us_interstate_entity"..m..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_us_interstate"
+	})
 
-minetest.register_node("street_signs:sign_warning_orange_3_line", {
-	description = "Basic US diamond-shaped \"warning\" sign (3-line, orange)",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "wallmounted",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_warning.obj",
-	tiles = { "street_signs_warning_orange.png" },
-	inventory_image = "street_signs_warning_orange_3_line_inv.png",
-	groups = {choppy=2, dig_immediate=2},
-	default_color = "0",
-	on_construct = function(pos) 
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	on_rotate = street_signs.wallmounted_rotate,
-	number_of_lines = 3,
-	horiz_scaling = 1.75,
-	vert_scaling = 1.75,
-	line_spacing = 1,
-	font_size = 15,
-	x_offset = 6,
-	y_offset = 19,
-	chars_per_line = 15,
-	entity_info = {
-		mesh = "street_signs_warning_entity.obj",
-		yaw = wmyaw
-	}
-})
 
-minetest.register_node("street_signs:sign_warning_orange_4_line", {
-	description = "Basic US diamond-shaped \"warning\" sign (4-line, orange)",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "wallmounted",
-	drawtype = "mesh",
-	node_box = cbox,
-	selection_box = cbox,
-	mesh = "street_signs_warning.obj",
-	tiles = { "street_signs_warning_orange.png" },
-	inventory_image = "street_signs_warning_orange_4_line_inv.png",
-	groups = {choppy=2, dig_immediate=2},
-	default_color = "0",
-	on_construct = function(pos) 
-		street_signs.construct_sign(pos)
-	end,
-	on_destruct = function(pos)
-		street_signs.destruct_sign(pos)
-	end,
-	on_receive_fields = function(pos, formname, fields, sender)
-		street_signs.receive_fields(pos, formname, fields, sender)
-	end,
-	on_punch = function(pos, node, puncher)
-		street_signs.update_sign(pos)
-	end,
-	on_rotate = street_signs.wallmounted_rotate,
-	number_of_lines = 4,
-	horiz_scaling = 1.75,
-	vert_scaling = 1.75,
-	line_spacing = 1,
-	font_size = 15,
-	x_offset = 6,
-	y_offset = 25,
-	chars_per_line = 15,
-	entity_info = {
-		mesh = "street_signs_warning_entity.obj",
-		yaw = wmyaw
-	}
-})
+	if m ~= "" then
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.8125, -0.5, -0.5, -0.75, 0.5, 0.5 }
+		}
+	else
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
+		}
+	end
 
+	table.insert(lbm_restore_nodes, "street_signs:sign_warning_3_line"..m)
+	table.insert(lbm_restore_nodes, "street_signs:sign_warning_4_line"..m)
+	table.insert(lbm_restore_nodes, "street_signs:sign_warning_orange_3_line"..m)
+	table.insert(lbm_restore_nodes, "street_signs:sign_warning_orange_4_line"..m)
+
+	minetest.register_node("street_signs:sign_warning_3_line"..m, {
+		description = "Basic US diamond-shaped \"warning\" sign (3-line, yellow)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_warning.png" },
+		inventory_image = "street_signs_warning_3_line_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		after_place_node = after_place_node,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
+		on_rotate = on_rotate,
+		number_of_lines = 3,
+		horiz_scaling = 1.75,
+		vert_scaling = 1.75,
+		line_spacing = 1,
+		font_size = 15,
+		x_offset = 6,
+		y_offset = 19,
+		chars_per_line = 15,
+		entity_info = {
+			mesh = "street_signs_warning_entity"..m..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_warning_3_line"
+	})
+
+	minetest.register_node("street_signs:sign_warning_4_line"..m, {
+		description = "Basic US diamond-shaped \"warning\" sign (4-line, yellow)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_warning.png" },
+		inventory_image = "street_signs_warning_4_line_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		after_place_node = after_place_node,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
+		on_rotate = on_rotate,
+		number_of_lines = 4,
+		horiz_scaling = 1.75,
+		vert_scaling = 1.75,
+		line_spacing = 1,
+		font_size = 15,
+		x_offset = 6,
+		y_offset = 25,
+		chars_per_line = 15,
+		entity_info = {
+			mesh = "street_signs_warning_entity"..m..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_warning_4_line"
+	})
+
+	minetest.register_node("street_signs:sign_warning_orange_3_line"..m, {
+		description = "Basic US diamond-shaped \"warning\" sign (3-line, orange)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_warning_orange.png" },
+		inventory_image = "street_signs_warning_orange_3_line_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		after_place_node = after_place_node,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
+		on_rotate = on_rotate,
+		number_of_lines = 3,
+		horiz_scaling = 1.75,
+		vert_scaling = 1.75,
+		line_spacing = 1,
+		font_size = 15,
+		x_offset = 6,
+		y_offset = 19,
+		chars_per_line = 15,
+		entity_info = {
+			mesh = "street_signs_warning_entity"..m..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_warning_orange_3_line"
+	})
+
+	minetest.register_node("street_signs:sign_warning_orange_4_line"..m, {
+		description = "Basic US diamond-shaped \"warning\" sign (4-line, orange)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_warning_orange.png" },
+		inventory_image = "street_signs_warning_orange_4_line_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = on_construct,
+		on_destruct = on_destruct,
+		after_place_node = after_place_node,
+		on_receive_fields = on_receive_fields,
+		on_punch = on_punch,
+		on_rotate = on_rotate,
+		number_of_lines = 4,
+		horiz_scaling = 1.75,
+		vert_scaling = 1.75,
+		line_spacing = 1,
+		font_size = 15,
+		x_offset = 6,
+		y_offset = 25,
+		chars_per_line = 15,
+		entity_info = {
+			mesh = "street_signs_warning_entity"..m..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_warning_orange_4_line"
+	})
+end
 
 local signs_text_on_activate
 
