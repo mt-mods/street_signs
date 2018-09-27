@@ -1008,6 +1008,62 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_pedestrian_crossing"
 	})
 
+	minetest.register_node("street_signs:sign_signal_ahead"..m, {
+		description = "Traffic signal ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_signal_ahead.png" },
+		inventory_image = "street_signs_signal_ahead_inv.png",
+		wield_image = "street_signs_signal_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_signal_ahead"
+	})
+
+	minetest.register_node("street_signs:sign_stop_ahead"..m, {
+		description = "Stop sign ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_stop_ahead.png" },
+		inventory_image = "street_signs_stop_ahead_inv.png",
+		wield_image = "street_signs_stop_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_stop_ahead"
+	})
+
+	minetest.register_node("street_signs:sign_yield_ahead"..m, {
+		description = "Yield sign ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_yield_ahead.png" },
+		inventory_image = "street_signs_yield_ahead_inv.png",
+		wield_image = "street_signs_yield_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_yield_ahead"
+	})
 end
 
 cbox = {
