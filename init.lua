@@ -1065,6 +1065,44 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_yield_ahead"
 	})
+
+	minetest.register_node("street_signs:sign_merging_traffic"..m, {
+		description = "Merging traffic sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_merging_traffic.png" },
+		inventory_image = "street_signs_merging_traffic_inv.png",
+		wield_image = "street_signs_merging_traffic_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_merging_traffic"
+	})
+
+	minetest.register_node("street_signs:sign_two_way_traffic"..m, {
+		description = "Two-way traffic sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_two_way_traffic.png" },
+		inventory_image = "street_signs_two_way_traffic_inv.png",
+		wield_image = "street_signs_two_way_traffic_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_two_way_traffic"
+	})
 end
 
 cbox = {
