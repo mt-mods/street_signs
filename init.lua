@@ -1001,6 +1001,25 @@ for _, m in ipairs({"", "_onpole"}) do
 
 end
 
+cbox = {
+	type = "fixed",
+	fixed = { -0.1875, -0.5, -0.25, 0.1875, 0.6125, 0.25 }
+}
+
+minetest.register_node("street_signs:sign_stop_for_ped", {
+	description = "Pedestrian crossing sign",
+	paramtype = "light",
+	sunlight_propagates = true,
+	paramtype2 = "facedir",
+	drawtype = "mesh",
+	node_box = cbox,
+	selection_box = cbox,
+	mesh = "street_signs_stop_for_ped.obj",
+	tiles = { "street_signs_stop_for_ped.png" },
+	inventory_image = "street_signs_stop_for_ped_inv.png",
+	groups = {choppy=2, dig_immediate=2},
+})
+
 local signs_text_on_activate
 
 signs_text_on_activate = function(self)
@@ -1207,6 +1226,8 @@ if minetest.get_modpath("infrastructure") then
 	end
 
 	minetest.register_alias_force("infrastructure:road_sign_retroreflective_surface", "air")
+	minetest.register_alias_force("infrastructure:crosswalk_safety_sign_bottom", "street_signs:sign_stop_for_ped")
+	minetest.register_alias_force("infrastructure:crosswalk_safety_sign_top", "air")
 
 	minetest.register_lbm({
 		nodenames = old_signs,
