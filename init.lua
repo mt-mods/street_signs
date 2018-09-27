@@ -676,6 +676,22 @@ for _, c in ipairs(colors) do
 	})
 end
 
+local after_place_node = function(pos, placer, itemstack, pointed_thing)
+	local ppos = minetest.get_pointed_thing_position(pointed_thing)
+	local pnode = minetest.get_node(ppos)
+	if pnode.name == "gloopblocks:fence_steel"
+	  or pnode.name == "homedecor:fence_brass"
+	  or pnode.name == "homedecor:fence_wrought_iron"
+	  or pnode.name == "coloredwood:fence"
+	  or string.find(pnode.name, "bobblocks.*pole") 
+	  or string.find(pnode.name, "default:fence_")
+	  or (pnode.name == "streets:bigpole" and pnode.param2 < 4)
+	  or (pnode.name == "streets:bigpole" and pnode.param2 > 19 and pnode.param2 < 24) then
+		local node = minetest.get_node(pos)
+		minetest.swap_node(pos, {name = itemstack:get_name().."_onpole", param2 = node.param2})
+	end
+end
+
 for _, m in ipairs({"", "_onpole"}) do
 
 	cbox = {
@@ -685,21 +701,6 @@ for _, m in ipairs({"", "_onpole"}) do
 
 	local nci = nil
 	local on_rotate = street_signs.wallmounted_rotate
-	local after_place_node = function(pos, placer, itemstack, pointed_thing)
-		local ppos = minetest.get_pointed_thing_position(pointed_thing)
-		local pnode = minetest.get_node(ppos)
-		if pnode.name == "gloopblocks:fence_steel"
-		  or pnode.name == "homedecor:fence_brass"
-		  or pnode.name == "homedecor:fence_wrought_iron"
-		  or pnode.name == "coloredwood:fence"
-		  or string.find(pnode.name, "bobblocks.*pole") 
-		  or string.find(pnode.name, "default:fence_")
-		  or (pnode.name == "streets:bigpole" and pnode.param2 < 4)
-		  or (pnode.name == "streets:bigpole" and pnode.param2 > 19 and pnode.param2 < 24) then
-			local node = minetest.get_node(pos)
-			minetest.swap_node(pos, {name = itemstack:get_name().."_onpole", param2 = node.param2})
-		end
-	end
 
 	if m ~= "" then
 		nci = 1
