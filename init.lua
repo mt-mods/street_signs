@@ -1086,6 +1086,28 @@ minetest.register_node("street_signs:sign_stop_for_ped", {
 	groups = {choppy=2, dig_immediate=2},
 })
 
+for _, d in ipairs({"l", "c", "r"}) do
+
+	cbox = {
+		type = "wallmounted",
+		wall_side = { -0.5, -0.45, -0.1875, -0.4375, 0.5, 0.1875 }
+	}
+
+	minetest.register_node("street_signs:sign_object_marker_type3_"..d, {
+		description = "Type 3 object marker ("..string.upper(d)..")",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_object_marker_type_3.obj",
+		tiles = { "street_signs_object_marker_type3_"..d..".png" },
+		inventory_image = "street_signs_object_marker_type3_"..d.."_inv.png",
+		groups = {choppy=2, dig_immediate=2},
+	})
+end
+
 local signs_text_on_activate
 
 signs_text_on_activate = function(self)
