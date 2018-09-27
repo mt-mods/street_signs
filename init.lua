@@ -682,6 +682,7 @@ local after_place_node = function(pos, placer, itemstack, pointed_thing)
 	local pdef = minetest.registered_items[pnode.name]
 	if (pdef and pdef.drawtype == "fencelike")
 	  or string.find(pnode.name, "default:fence_")
+	  or pnode.name == "coloredwood:fence"
 	  or (pnode.name == "streets:bigpole" and pnode.param2 < 4)
 	  or (pnode.name == "streets:bigpole" and pnode.param2 > 19 and pnode.param2 < 24) then
 		local node = minetest.get_node(pos)
