@@ -694,7 +694,7 @@ for _, m in ipairs({"", "_onpole"}) do
 
 	cbox = {
 		type = "wallmounted",
-		wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
+		wall_side = { -0.5, -0.3125, -0.3125, -0.4375, 0.3125, 0.3125 }
 	}
 
 	local nci = nil
@@ -705,7 +705,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_rotate = nil
 		cbox = {
 			type = "wallmounted",
-			wall_side = { -0.8125, -0.5, -0.5, -0.75, 0.5, 0.5 }
+			wall_side = { -0.8125, -0.3125, -0.3125, -0.75, 0.3125, 0.3125 }
 		}
 	end
 
@@ -720,7 +720,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_us_route"..m..".obj",
+		mesh = "street_signs_regulatory_24x24"..m..".obj",
 		tiles = { "street_signs_us_route.png" },
 		inventory_image = "street_signs_us_route_inv.png",
 		wield_image = "street_signs_us_route_inv.png",
@@ -741,23 +741,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		y_offset = 12,
 		chars_per_line = 3,
 		entity_info = {
-			mesh = "street_signs_us_route_entity"..m..".obj",
+			mesh = "street_signs_regulatory_24x24_entity"..m..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_us_route"
 	})
-
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.45, -0.45, -0.75, 0.45, 0.45 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.45, -0.45, -0.4375, 0.45, 0.45 }
-		}
-	end
 
 	minetest.register_node("street_signs:sign_us_interstate"..m, {
 		description = "Basic US \"Interstate\" sign",
