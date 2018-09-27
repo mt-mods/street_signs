@@ -1103,6 +1103,44 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_two_way_traffic"
 	})
+
+	minetest.register_node("street_signs:sign_left_lane_ends"..m, {
+		description = "Left lane ends sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_left_lane_ends.png" },
+		inventory_image = "street_signs_left_lane_ends_inv.png",
+		wield_image = "street_signs_left_lane_ends_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_left_lane_ends"
+	})
+
+	minetest.register_node("street_signs:sign_right_lane_ends"..m, {
+		description = "Right lane ends sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_right_lane_ends.png" },
+		inventory_image = "street_signs_right_lane_ends_inv.png",
+		wield_image = "street_signs_right_lane_ends_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_right_lane_ends"
+	})
 end
 
 cbox = {
