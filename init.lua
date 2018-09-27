@@ -946,6 +946,61 @@ for _, m in ipairs({"", "_onpole"}) do
 		},
 		drop = "street_signs:sign_warning_orange_4_line"
 	})
+
+	minetest.register_node("street_signs:sign_stop"..m, {
+		description = "Stop sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_stop"..m..".obj",
+		tiles = { "street_signs_stop.png" },
+		inventory_image = "street_signs_stop_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_stop"
+	})
+
+	minetest.register_node("street_signs:sign_yield"..m, {
+		description = "Yield sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_yield"..m..".obj",
+		tiles = { "street_signs_yield.png" },
+		inventory_image = "street_signs_yield_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_yield"
+	})
+
+	minetest.register_node("street_signs:sign_pedestrian_crossing"..m, {
+		description = "Pedestrian crossing sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning"..m..".obj",
+		tiles = { "street_signs_pedestrian_crossing.png" },
+		inventory_image = "street_signs_pedestrian_crossing_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_pedestrian_crossing"
+	})
+
 end
 
 local signs_text_on_activate
