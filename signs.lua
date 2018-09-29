@@ -31,19 +31,6 @@ local wmyaw = {
 	math.pi,
 }
 
-local on_construct =function(pos) 
-	street_signs.construct_sign(pos)
-end
-local on_destruct = function(pos)
-	street_signs.destruct_sign(pos)
-end
-local on_receive_fields = function(pos, formname, fields, sender)
-	street_signs.receive_fields(pos, formname, fields, sender)
-end
-local on_punch = function(pos, node, puncher)
-	street_signs.update_sign(pos)
-end
-
 table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_basic")
 table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_basic_top_only")
 
@@ -59,10 +46,10 @@ minetest.register_node("street_signs:sign_basic", {
 	tiles = { "street_signs_basic.png" },
 	groups = {choppy=2, dig_immediate=2},
 	default_color = "f",
-	on_construct = on_construct,
-	on_destruct = on_destruct,
-	on_receive_fields = on_receive_fields,
-	on_punch = on_punch,
+	on_construct = street_signs.construct_sign,
+	on_destruct = street_signs.destruct_sign,
+	on_receive_fields = street_signs.receive_fields,
+	on_punch = street_signs.update_sign,
 	on_rotate = street_signs.facedir_rotate,
 	number_of_lines = 2,
 	horiz_scaling = 1,
@@ -102,10 +89,10 @@ minetest.register_node("street_signs:sign_basic_top_only", {
 	tiles = { "street_signs_basic.png" },
 	groups = {choppy=2, dig_immediate=2},
 	default_color = "f",
-	on_construct = on_construct,
-	on_destruct = on_destruct,
-	on_receive_fields = on_receive_fields,
-	on_punch = on_punch,
+	on_construct = street_signs.construct_sign,
+	on_destruct = street_signs.destruct_sign,
+	on_receive_fields = street_signs.receive_fields,
+	on_punch = street_signs.update_sign,
 	on_rotate = street_signs.facedir_rotate,
 	number_of_lines = 2,
 	horiz_scaling = 1,
@@ -149,10 +136,10 @@ for _, c in ipairs(street_signs.big_sign_colors) do
 		tiles = { "street_signs_highway_small_"..color..".png" },
 		default_color = defc,
 		groups = {choppy=2, dig_immediate=2},
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 3,
 		horiz_scaling = 2,
@@ -186,10 +173,10 @@ for _, c in ipairs(street_signs.big_sign_colors) do
 		tiles = { "street_signs_highway_medium_"..color..".png" },
 		default_color = defc,
 		groups = {choppy=2, dig_immediate=2},
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 6,
 		horiz_scaling = 2,
@@ -224,10 +211,10 @@ for _, c in ipairs(street_signs.big_sign_colors) do
 		tiles = { "street_signs_highway_large_"..color..".png" },
 		default_color = defc,
 		groups = {choppy=2, dig_immediate=2},
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = street_signs.wallmounted_rotate,
 		number_of_lines = 6,
 		horiz_scaling = 2,
@@ -244,42 +231,9 @@ for _, c in ipairs(street_signs.big_sign_colors) do
 	})
 end
 
-local after_place_node = function(pos, placer, itemstack, pointed_thing)
-	local ppos = minetest.get_pointed_thing_position(pointed_thing)
-	local pnode = minetest.get_node(ppos)
-	local pdef = minetest.registered_items[pnode.name]
-	if (pdef and pdef.drawtype == "fencelike")
-	  or string.find(pnode.name, "default:fence_")
-	  or pnode.name == "coloredwood:fence"
-	  or (pnode.name == "streets:bigpole" and pnode.param2 < 4)
-	  or (pnode.name == "streets:bigpole" and pnode.param2 > 19 and pnode.param2 < 24) then
-		local node = minetest.get_node(pos)
-		minetest.swap_node(pos, {name = itemstack:get_name().."_onpole", param2 = node.param2})
-	end
-end
-
-local function shift_to_pole(t, m)
-	if m ~= "" then
-		return {
-			type = "wallmounted",
-			wall_side = { t[1] - 0.3125, t[2], t[3], t[4] - 0.3125, t[5], t[6] },
-			wall_top = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
-			wall_bottom = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
-		}
-	else
-		return {
-			type = "wallmounted",
-			wall_side = t,
-			wall_top = { t[3], -t[1], t[2], t[6], -t[4], t[5] },
-			wall_bottom = { t[3], t[1], t[2], t[6], t[4], t[5] }
-		}
-	end
-end
-
-
 for _, m in ipairs({"", "_onpole"}) do
 
-	cbox = shift_to_pole({ -0.5, -0.46, -0.46, -0.4375, 0.46, 0.46 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.46, -0.46, -0.4375, 0.46, 0.46 }, m)
 
 	local nci = nil
 	local on_rotate = street_signs.wallmounted_rotate
@@ -311,11 +265,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_us_route_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		after_place_node = after_place_node,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 1,
 		horiz_scaling = 3.5,
@@ -349,11 +303,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_us_interstate_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "f",
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		after_place_node = after_place_node,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 1,
 		horiz_scaling = 4.3,
@@ -370,7 +324,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_us_interstate"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
 
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_warning_3_line"..m)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_warning_4_line"..m)
@@ -394,11 +348,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_warning_3_line_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		after_place_node = after_place_node,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 3,
 		horiz_scaling = 1.75,
@@ -432,11 +386,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_warning_4_line_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		after_place_node = after_place_node,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 4,
 		horiz_scaling = 1.75,
@@ -470,11 +424,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_warning_orange_3_line_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		after_place_node = after_place_node,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 3,
 		horiz_scaling = 1.75,
@@ -508,11 +462,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_warning_orange_4_line_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		after_place_node = after_place_node,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 4,
 		horiz_scaling = 1.75,
@@ -529,7 +483,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_warning_orange_4_line"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
 
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_speed_limit"..m)
 
@@ -550,11 +504,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_speed_limit_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		on_construct = on_construct,
-		on_destruct = on_destruct,
-		after_place_node = after_place_node,
-		on_receive_fields = on_receive_fields,
-		on_punch = on_punch,
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 1,
 		horiz_scaling = 2.65,
@@ -573,7 +527,7 @@ for _, m in ipairs({"", "_onpole"}) do
 
 -- below this point are image-only signs (i.e. no user-input)
 
-	cbox = shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
 
 	minetest.register_node("street_signs:sign_stop"..m, {
 		description = "R1-1: Stop sign",
@@ -592,12 +546,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_stop_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_stop"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.61, -0.61, -0.4375, 0.61, 0.61 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.61, -0.61, -0.4375, 0.61, 0.61 }, m)
 
 	minetest.register_node("street_signs:sign_yield"..m, {
 		description = "R1-2: Yield sign",
@@ -616,12 +570,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_yield_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_yield"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
 
 	minetest.register_node("street_signs:sign_pedestrian_crossing"..m, {
 		description = "W11-2: Pedestrian crossing sign",
@@ -640,7 +594,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_pedestrian_crossing_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_pedestrian_crossing"
 	})
@@ -662,7 +616,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_signal_ahead_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_signal_ahead"
 	})
@@ -684,7 +638,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_stop_ahead_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_stop_ahead"
 	})
@@ -706,7 +660,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_yield_ahead_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_yield_ahead"
 	})
@@ -728,7 +682,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_merging_traffic_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_merging_traffic"
 	})
@@ -750,7 +704,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_two_way_traffic_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_two_way_traffic"
 	})
@@ -772,7 +726,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_left_lane_ends_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_left_lane_ends"
 	})
@@ -794,12 +748,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		wield_image = "street_signs_right_lane_ends_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_right_lane_ends"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
 
 	minetest.register_node("street_signs:sign_left_on_green_arrow_only"..m, {
 		description = "R10-5: Left on green arrow only sign",
@@ -817,12 +771,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_left_on_green_arrow_only_inv.png",
 		wield_image = "street_signs_left_on_green_arrow_only_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_left_on_green_arrow_only"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.47, -0.32, -0.4375, 0.47, 0.32 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.47, -0.32, -0.4375, 0.47, 0.32 }, m)
 
 	minetest.register_node("street_signs:sign_stop_here_on_red"..m, {
 		description = "R10-6: Stop here on red sign",
@@ -840,12 +794,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_stop_here_on_red_inv.png",
 		wield_image = "street_signs_stop_here_on_red_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_stop_here_on_red"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
 
 	minetest.register_node("street_signs:sign_left_turn_yield_on_green_light"..m, {
 		description = "R10-12: Left turn yield on green light",
@@ -863,12 +817,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_left_turn_yield_on_green_light_inv.png",
 		wield_image = "street_signs_left_turn_yield_on_green_light_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_left_turn_yield_on_green_light"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
 
 	minetest.register_node("street_signs:sign_crosswalk_stop_on_red_light"..m, {
 		description = "R10-23: Crosswalk: stop on red light",
@@ -886,13 +840,13 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_crosswalk_stop_on_red_light_inv.png",
 		wield_image = "street_signs_crosswalk_stop_on_red_light_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_crosswalk_stop_on_red_light"
 	})
 
 
-	cbox = shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
 
 	minetest.register_node("street_signs:sign_keep_right"..m, {
 		description = "R4-7: Keep right sign",
@@ -910,7 +864,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_keep_right_inv.png",
 		wield_image = "street_signs_keep_right_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_keep_right"
 	})
@@ -931,12 +885,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_keep_left_inv.png",
 		wield_image = "street_signs_keep_left_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_keep_left"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.46, -0.46, -0.4375, 0.46, 0.46 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.46, -0.46, -0.4375, 0.46, 0.46 }, m)
 
 	minetest.register_node("street_signs:sign_do_not_enter"..m, {
 		description = "R5-1: Do not enter sign",
@@ -955,12 +909,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_do_not_enter_inv.png",
 		wield_image = "street_signs_do_not_enter_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_do_not_enter"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.4, -0.5625, -0.4375, 0.4, 0.5625 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.4, -0.5625, -0.4375, 0.4, 0.5625 }, m)
 
 	minetest.register_node("street_signs:sign_wrong_way"..m, {
 		description = "R5-1a: Wrong way sign",
@@ -978,12 +932,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_wrong_way_inv.png",
 		wield_image = "street_signs_wrong_way_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_wrong_way"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.55, -0.5, -0.4375, 0.55, 0.5 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.55, -0.5, -0.4375, 0.55, 0.5 }, m)
 
 	minetest.register_node("street_signs:use_lane_with_green_arrow"..m, {
 		description = "R10-8: Use lane with green arrow",
@@ -1001,12 +955,12 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_use_lane_with_green_arrow_inv.png",
 		wield_image = "street_signs_use_lane_with_green_arrow_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:use_lane_with_green_arrow"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
+	cbox = street_signs.shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
 
 	minetest.register_node("street_signs:no_turn_on_red_light"..m, {
 		description = "R10-11: No turn on red light",
@@ -1024,7 +978,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		inventory_image = "street_signs_no_turn_on_red_light_inv.png",
 		wield_image = "street_signs_no_turn_on_red_light_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
-		after_place_node = after_place_node,
+		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:no_turn_on_red_light"
 	})

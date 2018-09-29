@@ -440,6 +440,42 @@ minetest.register_entity("street_signs:text", {
 	on_activate = signs_text_on_activate,
 })
 
+-- make selection boxes
+
+function street_signs.shift_to_pole(t, m)
+	if m ~= "" then
+		return {
+			type = "wallmounted",
+			wall_side = { t[1] - 0.3125, t[2], t[3], t[4] - 0.3125, t[5], t[6] },
+			wall_top = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
+			wall_bottom = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
+		}
+	else
+		return {
+			type = "wallmounted",
+			wall_side = t,
+			wall_top = { t[3], -t[1], t[2], t[6], -t[4], t[5] },
+			wall_bottom = { t[3], t[1], t[2], t[6], t[4], t[5] }
+		}
+	end
+end
+
+-- switch models to pole-mounted if appropriate
+
+street_signs.after_place_node = function(pos, placer, itemstack, pointed_thing)
+	local ppos = minetest.get_pointed_thing_position(pointed_thing)
+	local pnode = minetest.get_node(ppos)
+	local pdef = minetest.registered_items[pnode.name]
+	if (pdef and pdef.drawtype == "fencelike")
+	  or string.find(pnode.name, "default:fence_")
+	  or pnode.name == "coloredwood:fence"
+	  or (pnode.name == "streets:bigpole" and pnode.param2 < 4)
+	  or (pnode.name == "streets:bigpole" and pnode.param2 > 19 and pnode.param2 < 24) then
+		local node = minetest.get_node(pos)
+		minetest.swap_node(pos, {name = itemstack:get_name().."_onpole", param2 = node.param2})
+	end
+end
+
 -- restore signs' text after /clearobjects and the like, the next time
 -- a block is reloaded by the server.
 
