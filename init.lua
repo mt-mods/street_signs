@@ -1303,12 +1303,12 @@ for _, m in ipairs({"", "_onpole"}) do
 	if m ~= "" then
 		cbox = {
 			type = "wallmounted",
-			wall_side = { -0.8125, -0.4, -0.5625, -0.75, 0.4, 0.5625 }
+			wall_side = { -0.8125, -0.5, -0.5, -0.75, 0.5, 0.5 }
 		}
 	else
 		cbox = {
 			type = "wallmounted",
-			wall_side = { -0.5, -0.4, -0.5625, -0.4375, 0.4, 0.5625 }
+			wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
 		}
 	end
 
@@ -1329,6 +1329,18 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_do_not_enter"
 	})
+
+	if m ~= "" then
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.8125, -0.4, -0.5625, -0.75, 0.4, 0.5625 }
+		}
+	else
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.5, -0.4, -0.5625, -0.4375, 0.4, 0.5625 }
+		}
+	end
 
 	minetest.register_node("street_signs:sign_wrong_way"..m, {
 		description = "R5-1a: Wrong way sign",
