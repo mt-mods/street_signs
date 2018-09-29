@@ -1292,6 +1292,45 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_wrong_way"
 	})
 
+	cbox = shift_to_pole({ -0.5, -0.55, -0.5, -0.4375, 0.55, 0.5 }, m)
+
+	minetest.register_node("street_signs:use_lane_with_green_arrow"..m, {
+		description = "R10-8: Use lane with green arrow",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x42"..m..".obj",
+		tiles = { "street_signs_use_lane_with_green_arrow.png" },
+		inventory_image = "street_signs_use_lane_with_green_arrow_inv.png",
+		wield_image = "street_signs_use_lane_with_green_arrow_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:use_lane_with_green_arrow"
+	})
+
+	cbox = shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
+
+	minetest.register_node("street_signs:no_turn_on_red_light"..m, {
+		description = "R10-11: No turn on red light",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x48"..m..".obj",
+		tiles = { "street_signs_no_turn_on_red_light.png" },
+		inventory_image = "street_signs_no_turn_on_red_light_inv.png",
+		wield_image = "street_signs_no_turn_on_red_light_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:no_turn_on_red_light"
+	})
 
 end
 
