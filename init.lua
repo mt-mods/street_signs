@@ -1195,6 +1195,36 @@ for _, m in ipairs({"", "_onpole"}) do
 	if m ~= "" then
 		cbox = {
 			type = "wallmounted",
+			wall_side = { -0.8125, -0.47, -0.4, -0.75, 0.47, 0.4 }
+		}
+	else
+		cbox = {
+			type = "wallmounted",
+			wall_side = { -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }
+		}
+	end
+
+	minetest.register_node("street_signs:sign_left_on_green_arrow_only"..m, {
+		description = "R10-5: Left on green arrow only sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_30x36"..m..".obj",
+		tiles = { "street_signs_left_on_green_arrow_only.png" },
+		inventory_image = "street_signs_left_on_green_arrow_only_inv.png",
+		wield_image = "street_signs_left_on_green_arrow_only_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_left_on_green_arrow_only"
+	})
+
+	if m ~= "" then
+		cbox = {
+			type = "wallmounted",
 			wall_side = { -0.8125, -0.47, -0.32, -0.75, 0.47, 0.32 }
 		}
 	else
@@ -1252,6 +1282,24 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_keep_right"
 	})
 
+	minetest.register_node("street_signs:sign_keep_left"..m, {
+		description = "R4-8: Keep left sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x48"..m..".obj",
+		tiles = { "street_signs_keep_left.png" },
+		inventory_image = "street_signs_keep_left_inv.png",
+		wield_image = "street_signs_keep_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_keep_left"
+	})
+
 	if m ~= "" then
 		cbox = {
 			type = "wallmounted",
@@ -1299,6 +1347,8 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_wrong_way"
 	})
+
+
 end
 
 cbox = {
