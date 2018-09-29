@@ -473,7 +473,7 @@ table.insert(lbm_restore_nodes, "street_signs:sign_basic")
 table.insert(lbm_restore_nodes, "street_signs:sign_basic_top_only")
 
 minetest.register_node("street_signs:sign_basic", {
-	description = "Basic street name sign",
+	description = "D3-1a: Generic intersection street name sign",
 	paramtype = "light",
 	sunlight_propagates = true,
 	paramtype2 = "facedir",
@@ -516,7 +516,7 @@ cbox = {
 }
 
 minetest.register_node("street_signs:sign_basic_top_only", {
-	description = "Basic street name sign, top only",
+	description = "D3-1a: Generic intersection street name sign (top only)",
 	paramtype = "light",
 	sunlight_propagates = true,
 	paramtype2 = "facedir",
@@ -568,7 +568,7 @@ for _, c in ipairs(colors) do
 	table.insert(lbm_restore_nodes, "street_signs:sign_highway_large_"..color)
 
 	minetest.register_node("street_signs:sign_highway_small_"..color, {
-		description = "Small highway sign ("..color..")",
+		description = "Small generic highway sign (3-line, "..color..")",
 		inventory_image = "street_signs_highway_small_"..color.."_inv.png",
 		wield_image = "street_signs_highway_small_"..color.."_inv.png",
 		paramtype = "light",
@@ -605,7 +605,7 @@ for _, c in ipairs(colors) do
 	}
 
 	minetest.register_node("street_signs:sign_highway_medium_"..color, {
-		description = "Medium highway sign ("..color..")",
+		description = "Medium generic highway sign (5-line, "..color..")",
 		inventory_image = "street_signs_highway_medium_"..color.."_inv.png",
 		wield_image = "street_signs_highway_medium_"..color.."_inv.png",
 		paramtype = "light",
@@ -643,7 +643,7 @@ for _, c in ipairs(colors) do
 	}
 
 	minetest.register_node("street_signs:sign_highway_large_"..color, {
-		description = "Large highway sign ("..color..")",
+		description = "Large generic highway sign (5-line, "..color..")",
 		inventory_image = "street_signs_highway_large_"..color.."_inv.png",
 		wield_image = "street_signs_highway_large_"..color.."_inv.png",
 		paramtype = "light",
@@ -713,7 +713,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	table.insert(lbm_restore_nodes, "street_signs:sign_us_interstate"..m)
 
 	minetest.register_node("street_signs:sign_us_route"..m, {
-		description = "Basic \"US Route\" sign",
+		description = "M1-4: Generic \"US Route\" sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -748,7 +748,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_us_interstate"..m, {
-		description = "Basic US \"Interstate\" sign",
+		description = "M1-1: Generic US Interstate sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -800,7 +800,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	table.insert(lbm_restore_nodes, "street_signs:sign_warning_orange_4_line"..m)
 
 	minetest.register_node("street_signs:sign_warning_3_line"..m, {
-		description = "Basic US diamond-shaped \"warning\" sign (3-line, yellow)",
+		description = "W3-4: Generic US diamond \"warning\" sign (3-line, yellow)",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -835,7 +835,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_warning_4_line"..m, {
-		description = "Basic US diamond-shaped \"warning\" sign (4-line, yellow)",
+		description = "W23-2: Generic US diamond \"warning\" sign (4-line, yellow)",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -870,7 +870,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_warning_orange_3_line"..m, {
-		description = "Basic US diamond-shaped \"warning\" sign (3-line, orange)",
+		description = "W3-4: Generic US diamond \"warning\" sign (3-line, orange)",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -905,7 +905,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_warning_orange_4_line"..m, {
-		description = "Basic US diamond-shaped \"warning\" sign (4-line, orange)",
+		description = "W23-2: Generic US diamond \"warning\" sign (4-line, orange)",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -954,7 +954,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	table.insert(lbm_restore_nodes, "street_signs:sign_speed_limit"..m)
 
 	minetest.register_node("street_signs:sign_speed_limit"..m, {
-		description = "Basic speed limit sign",
+		description = "R2-1: Generic speed limit sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1003,7 +1003,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	end
 
 	minetest.register_node("street_signs:sign_stop"..m, {
-		description = "Stop sign",
+		description = "R1-1: Stop sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1022,7 +1022,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_yield"..m, {
-		description = "Yield sign",
+		description = "R1-2: Yield sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1041,7 +1041,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_pedestrian_crossing"..m, {
-		description = "Pedestrian crossing sign",
+		description = "W11-2: Pedestrian crossing sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1060,7 +1060,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_signal_ahead"..m, {
-		description = "Traffic signal ahead",
+		description = "W3-3: Traffic signal ahead",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1079,7 +1079,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_stop_ahead"..m, {
-		description = "Stop sign ahead",
+		description = "W3-1: Stop sign ahead",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1098,7 +1098,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_yield_ahead"..m, {
-		description = "Yield sign ahead",
+		description = "W3-2: Yield sign ahead",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1117,7 +1117,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_merging_traffic"..m, {
-		description = "Merging traffic sign",
+		description = "W4-1: Traffic merging from right sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1136,7 +1136,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_two_way_traffic"..m, {
-		description = "Two-way traffic sign",
+		description = "W6-3: Two-way traffic sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1155,7 +1155,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_left_lane_ends"..m, {
-		description = "Left lane ends sign",
+		description = "W4-2: Left lane ends sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1174,7 +1174,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_right_lane_ends"..m, {
-		description = "Right lane ends sign",
+		description = "W4-2: Right lane ends sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1205,7 +1205,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	end
 
 	minetest.register_node("street_signs:sign_stop_here_on_red"..m, {
-		description = "Stop here on red sign",
+		description = "R10-6: Stop here on red sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1235,7 +1235,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	end
 
 	minetest.register_node("street_signs:sign_keep_right"..m, {
-		description = "Keep right sign",
+		description = "R4-7: Keep right sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1265,7 +1265,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	end
 
 	minetest.register_node("street_signs:sign_do_not_enter"..m, {
-		description = "Do not enter sign",
+		description = "R5-1: Do not enter sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1283,7 +1283,7 @@ for _, m in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_wrong_way"..m, {
-		description = "Wrong way sign",
+		description = "R5-1a: Wrong way sign",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1307,7 +1307,7 @@ cbox = {
 }
 
 minetest.register_node("street_signs:sign_stop_for_ped", {
-	description = "Pedestrian crossing sign",
+	description = "R1-6a: Stop for pedestrian in crosswalk sign",
 	paramtype = "light",
 	sunlight_propagates = true,
 	paramtype2 = "facedir",
@@ -1328,7 +1328,7 @@ for _, d in ipairs({"l", "c", "r"}) do
 	}
 
 	minetest.register_node("street_signs:sign_object_marker_type3_"..d, {
-		description = "Type 3 object marker ("..string.upper(d)..")",
+		description = "OM3-"..string.upper(d)..": Type 3 object marker",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
