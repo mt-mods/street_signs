@@ -2,7 +2,6 @@
 
 local S = street_signs.gettext
 
-
 street_signs.lbm_restore_nodes = {}
 
 local cbox = {
@@ -845,6 +844,53 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_stop_here_on_red"
 	})
+
+	cbox = shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
+
+	minetest.register_node("street_signs:sign_left_turn_yield_on_green_light"..m, {
+		description = "R10-12: Left turn yield on green light",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_30x36"..m..".obj",
+		tiles = { "street_signs_left_turn_yield_on_green_light.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_left_turn_yield_on_green_light_inv.png",
+		wield_image = "street_signs_left_turn_yield_on_green_light_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_left_turn_yield_on_green_light"
+	})
+
+	cbox = shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
+
+	minetest.register_node("street_signs:sign_crosswalk_stop_on_red_light"..m, {
+		description = "R10-23: Crosswalk: stop on red light",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_24x30"..m..".obj",
+		tiles = { "street_signs_crosswalk_stop_on_red_light.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_crosswalk_stop_on_red_light_inv.png",
+		wield_image = "street_signs_crosswalk_stop_on_red_light_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_crosswalk_stop_on_red_light"
+	})
+
 
 	cbox = shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
 
