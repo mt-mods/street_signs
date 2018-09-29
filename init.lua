@@ -711,14 +711,16 @@ end
 
 for _, m in ipairs({"", "_onpole"}) do
 
-	cbox = shift_to_pole({ -0.5, -0.3125, -0.3125, -0.4375, 0.3125, 0.3125 }, m)
+	cbox = shift_to_pole({ -0.5, -0.46, -0.46, -0.4375, 0.46, 0.46 }, m)
 
 	local nci = nil
 	local on_rotate = street_signs.wallmounted_rotate
+	local pole_mount_tex = nil
 
 	if m ~= "" then
 		nci = 1
 		on_rotate = nil
+		pole_mount_tex = "street_signs_pole_mount.png"
 	end
 
 	table.insert(lbm_restore_nodes, "street_signs:sign_us_route"..m)
@@ -732,8 +734,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x24"..m..".obj",
-		tiles = { "street_signs_us_route.png" },
+		mesh = "street_signs_regulatory_36x36"..m..".obj",
+		tiles = { "street_signs_us_route.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_us_route_inv.png",
 		wield_image = "street_signs_us_route_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -750,10 +755,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		line_spacing = 6,
 		font_size = 31,
 		x_offset = 8,
-		y_offset = 12,
+		y_offset = 11,
 		chars_per_line = 3,
 		entity_info = {
-			mesh = "street_signs_regulatory_24x24_entity"..m..".obj",
+			mesh = "street_signs_regulatory_36x36_entity"..m..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_us_route"
@@ -767,8 +772,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_us_interstate"..m..".obj",
-		tiles = { "street_signs_us_interstate.png" },
+		mesh = "street_signs_interstate_shield"..m..".obj",
+		tiles = { "street_signs_us_interstate.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_us_interstate_inv.png",
 		wield_image = "street_signs_us_interstate_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -780,7 +788,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_punch = on_punch,
 		on_rotate = on_rotate,
 		number_of_lines = 1,
-		horiz_scaling = 4.5,
+		horiz_scaling = 4.3,
 		vert_scaling = 1.4,
 		line_spacing = 6,
 		font_size = 31,
@@ -788,7 +796,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		y_offset = 14,
 		chars_per_line = 3,
 		entity_info = {
-			mesh = "street_signs_us_interstate_entity"..m..".obj",
+			mesh = "street_signs_interstate_shield_entity"..m..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_us_interstate"
@@ -809,8 +817,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_warning.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_warning.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_warning_3_line_inv.png",
 		wield_image = "street_signs_warning_3_line_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -830,7 +841,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		y_offset = 19,
 		chars_per_line = 15,
 		entity_info = {
-			mesh = "street_signs_warning_entity"..m..".obj",
+			mesh = "street_signs_warning_36x36_entity"..m..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_warning_3_line"
@@ -844,8 +855,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_warning.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_warning.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_warning_4_line_inv.png",
 		wield_image = "street_signs_warning_4_line_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -865,7 +879,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		y_offset = 25,
 		chars_per_line = 15,
 		entity_info = {
-			mesh = "street_signs_warning_entity"..m..".obj",
+			mesh = "street_signs_warning_36x36_entity"..m..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_warning_4_line"
@@ -879,8 +893,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_warning_orange.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_warning_orange.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_warning_orange_3_line_inv.png",
 		wield_image = "street_signs_warning_orange_3_line_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -900,7 +917,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		y_offset = 19,
 		chars_per_line = 15,
 		entity_info = {
-			mesh = "street_signs_warning_entity"..m..".obj",
+			mesh = "street_signs_warning_36x36_entity"..m..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_warning_orange_3_line"
@@ -914,8 +931,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_warning_orange.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_warning_orange.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_warning_orange_4_line_inv.png",
 		wield_image = "street_signs_warning_orange_4_line_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -935,13 +955,13 @@ for _, m in ipairs({"", "_onpole"}) do
 		y_offset = 25,
 		chars_per_line = 15,
 		entity_info = {
-			mesh = "street_signs_warning_entity"..m..".obj",
+			mesh = "street_signs_warning_36x36_entity"..m..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_warning_orange_4_line"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
+	cbox = shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
 
 	table.insert(lbm_restore_nodes, "street_signs:sign_speed_limit"..m)
 
@@ -953,8 +973,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x48"..m..".obj",
-		tiles = { "street_signs_speed_limit.png" },
+		mesh = "street_signs_regulatory_30x36"..m..".obj",
+		tiles = { "street_signs_speed_limit.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_speed_limit_inv.png",
 		wield_image = "street_signs_speed_limit_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -974,7 +997,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		y_offset = 37,
 		chars_per_line = 4,
 		entity_info = {
-			mesh = "street_signs_regulatory_36x48_entity"..m..".obj",
+			mesh = "street_signs_regulatory_30x36_entity"..m..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_speed_limit"
@@ -993,7 +1016,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_stop"..m..".obj",
-		tiles = { "street_signs_stop.png" },
+		tiles = { "street_signs_stop.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_stop_inv.png",
 		wield_image = "street_signs_stop_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1002,6 +1028,8 @@ for _, m in ipairs({"", "_onpole"}) do
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_stop"
 	})
+
+	cbox = shift_to_pole({ -0.5, -0.61, -0.61, -0.4375, 0.61, 0.61 }, m)
 
 	minetest.register_node("street_signs:sign_yield"..m, {
 		description = "R1-2: Yield sign",
@@ -1012,7 +1040,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_yield"..m..".obj",
-		tiles = { "street_signs_yield.png" },
+		tiles = { "street_signs_yield.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_yield_inv.png",
 		wield_image = "street_signs_yield_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1022,6 +1053,8 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_yield"
 	})
 
+	cbox = shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
+
 	minetest.register_node("street_signs:sign_pedestrian_crossing"..m, {
 		description = "W11-2: Pedestrian crossing sign",
 		paramtype = "light",
@@ -1030,8 +1063,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_pedestrian_crossing.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_pedestrian_crossing.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_pedestrian_crossing_inv.png",
 		wield_image = "street_signs_pedestrian_crossing_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1049,8 +1085,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_signal_ahead.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_signal_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_signal_ahead_inv.png",
 		wield_image = "street_signs_signal_ahead_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1068,8 +1107,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_stop_ahead.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_stop_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_stop_ahead_inv.png",
 		wield_image = "street_signs_stop_ahead_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1087,8 +1129,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_yield_ahead.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_yield_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_yield_ahead_inv.png",
 		wield_image = "street_signs_yield_ahead_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1106,8 +1151,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_merging_traffic.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_merging_traffic.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_merging_traffic_inv.png",
 		wield_image = "street_signs_merging_traffic_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1125,8 +1173,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_two_way_traffic.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_two_way_traffic.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_two_way_traffic_inv.png",
 		wield_image = "street_signs_two_way_traffic_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1144,8 +1195,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_left_lane_ends.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_left_lane_ends.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_left_lane_ends_inv.png",
 		wield_image = "street_signs_left_lane_ends_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1163,8 +1217,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_warning"..m..".obj",
-		tiles = { "street_signs_right_lane_ends.png" },
+		mesh = "street_signs_warning_36x36"..m..".obj",
+		tiles = { "street_signs_right_lane_ends.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_right_lane_ends_inv.png",
 		wield_image = "street_signs_right_lane_ends_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1185,7 +1242,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_regulatory_30x36"..m..".obj",
-		tiles = { "street_signs_left_on_green_arrow_only.png" },
+		tiles = { "street_signs_left_on_green_arrow_only.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_left_on_green_arrow_only_inv.png",
 		wield_image = "street_signs_left_on_green_arrow_only_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1205,7 +1265,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_regulatory_24x36"..m..".obj",
-		tiles = { "street_signs_stop_here_on_red.png" },
+		tiles = { "street_signs_stop_here_on_red.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_stop_here_on_red_inv.png",
 		wield_image = "street_signs_stop_here_on_red_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1225,7 +1288,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_regulatory_36x48"..m..".obj",
-		tiles = { "street_signs_keep_right.png" },
+		tiles = { "street_signs_keep_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_keep_right_inv.png",
 		wield_image = "street_signs_keep_right_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1243,7 +1309,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_regulatory_36x48"..m..".obj",
-		tiles = { "street_signs_keep_left.png" },
+		tiles = { "street_signs_keep_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_keep_left_inv.png",
 		wield_image = "street_signs_keep_left_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1252,7 +1321,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_keep_left"
 	})
 
-	cbox = shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
+	cbox = shift_to_pole({ -0.5, -0.46, -0.46, -0.4375, 0.46, 0.46 }, m)
 
 	minetest.register_node("street_signs:sign_do_not_enter"..m, {
 		description = "R5-1: Do not enter sign",
@@ -1263,7 +1332,11 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_regulatory_36x36"..m..".obj",
-		tiles = { "street_signs_do_not_enter.png" },
+		tiles = {
+			"street_signs_do_not_enter.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_do_not_enter_inv.png",
 		wield_image = "street_signs_do_not_enter_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1283,7 +1356,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_regulatory_42x30"..m..".obj",
-		tiles = { "street_signs_wrong_way.png" },
+		tiles = { "street_signs_wrong_way.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_wrong_way_inv.png",
 		wield_image = "street_signs_wrong_way_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1303,7 +1379,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_regulatory_36x42"..m..".obj",
-		tiles = { "street_signs_use_lane_with_green_arrow.png" },
+		tiles = { "street_signs_use_lane_with_green_arrow.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_use_lane_with_green_arrow_inv.png",
 		wield_image = "street_signs_use_lane_with_green_arrow_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1323,7 +1402,10 @@ for _, m in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_regulatory_36x48"..m..".obj",
-		tiles = { "street_signs_no_turn_on_red_light.png" },
+		tiles = { "street_signs_no_turn_on_red_light.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
 		inventory_image = "street_signs_no_turn_on_red_light_inv.png",
 		wield_image = "street_signs_no_turn_on_red_light_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
@@ -1357,7 +1439,7 @@ for _, d in ipairs({"l", "c", "r"}) do
 
 	cbox = {
 		type = "wallmounted",
-		wall_side = { -0.5, -0.45, -0.1875, -0.4375, 0.5, 0.1875 }
+		wall_side = { -0.5, -0.5, -0.1875, -0.4375, 0.5, 0.1875 }
 	}
 
 	minetest.register_node("street_signs:sign_object_marker_type3_"..d, {
@@ -1369,7 +1451,9 @@ for _, d in ipairs({"l", "c", "r"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_object_marker_type_3.obj",
-		tiles = { "street_signs_object_marker_type3_"..d..".png" },
+		tiles = { "street_signs_object_marker_type3_"..d..".png",
+			"street_signs_sign_edge.png"
+		},
 		inventory_image = "street_signs_object_marker_type3_"..d.."_inv.png",
 		groups = {choppy=2, dig_immediate=2},
 	})
