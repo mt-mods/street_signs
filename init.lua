@@ -694,12 +694,16 @@ local function shift_to_pole(t, m)
 	if m ~= "" then
 		return {
 			type = "wallmounted",
-			wall_side = { t[1] - 0.3125, t[2], t[3], t[4] - 0.3125, t[5], t[6] }
+			wall_side = { t[1] - 0.3125, t[2], t[3], t[4] - 0.3125, t[5], t[6] },
+			wall_top = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
+			wall_bottom = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
 		}
 	else
 		return {
 			type = "wallmounted",
-			wall_side = t
+			wall_side = t,
+			wall_top = { t[3], -t[1], t[2], t[6], -t[4], t[5] },
+			wall_bottom = { t[3], t[1], t[2], t[6], t[4], t[5] }
 		}
 	end
 end
