@@ -3,15 +3,6 @@
 local S = street_signs.gettext
 
 if minetest.get_modpath("infrastructure") then
-	local old_signs = {
-		"infrastructure:road_sign_stop",
-		"infrastructure:road_sign_stop_on_post",
-		"infrastructure:road_sign_yield",
-		"infrastructure:road_sign_yield_on_post",
-		"infrastructure:road_sign_crosswalk",
-		"infrastructure:road_sign_crosswalk_on_post"
-	}
-
 	local signs_equiv = {
 		["infrastructure:road_sign_stop"]              = "street_signs:sign_stop",
 		["infrastructure:road_sign_stop_on_post"]      = "street_signs:sign_stop_onpole",
@@ -21,11 +12,14 @@ if minetest.get_modpath("infrastructure") then
 		["infrastructure:road_sign_crosswalk_on_post"] = "street_signs:sign_pedestrian_crossing_onpole",
 	}
 
-	for _, name in ipairs(old_signs) do
-		minetest.unregister_item(name)
-		if not string.find(name, "on_post") then
-			minetest.clear_craft({output = name})
+	local old_signs = {}
+
+	for old, new in pairs(signs_equiv) do
+		minetest.unregister_item(old)
+		if not string.find(old, "on_post") then
+			minetest.clear_craft({output = old})
 		end
+		old_signs[#old_signs+1] = old
 	end
 
 	minetest.register_alias_force("infrastructure:road_sign_retroreflective_surface", "air")
