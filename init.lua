@@ -690,12 +690,24 @@ local after_place_node = function(pos, placer, itemstack, pointed_thing)
 	end
 end
 
+local function shift_to_pole(t, m)
+	if m ~= "" then
+		return {
+			type = "wallmounted",
+			wall_side = { t[1] - 0.3125, t[2], t[3], t[4] - 0.3125, t[5], t[6] }
+		}
+	else
+		return {
+			type = "wallmounted",
+			wall_side = t
+		}
+	end
+end
+
+
 for _, m in ipairs({"", "_onpole"}) do
 
-	cbox = {
-		type = "wallmounted",
-		wall_side = { -0.5, -0.3125, -0.3125, -0.4375, 0.3125, 0.3125 }
-	}
+	cbox = shift_to_pole({ -0.5, -0.3125, -0.3125, -0.4375, 0.3125, 0.3125 }, m)
 
 	local nci = nil
 	local on_rotate = street_signs.wallmounted_rotate
@@ -703,10 +715,6 @@ for _, m in ipairs({"", "_onpole"}) do
 	if m ~= "" then
 		nci = 1
 		on_rotate = nil
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.3125, -0.3125, -0.75, 0.3125, 0.3125 }
-		}
 	end
 
 	table.insert(lbm_restore_nodes, "street_signs:sign_us_route"..m)
@@ -782,17 +790,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_us_interstate"
 	})
 
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.5, -0.5, -0.75, 0.5, 0.5 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
-		}
-	end
+	cbox = shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
 
 	table.insert(lbm_restore_nodes, "street_signs:sign_warning_3_line"..m)
 	table.insert(lbm_restore_nodes, "street_signs:sign_warning_4_line"..m)
@@ -939,17 +937,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_warning_orange_4_line"
 	})
 
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.625, -0.47, -0.75, 0.625, 0.47 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }
-		}
-	end
+	cbox = shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
 
 	table.insert(lbm_restore_nodes, "street_signs:sign_speed_limit"..m)
 
@@ -990,17 +978,7 @@ for _, m in ipairs({"", "_onpole"}) do
 
 -- below this point are image-only signs (i.e. no user-input)
 
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.5, -0.5, -0.75, 0.5, 0.5 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
-		}
-	end
+	cbox = shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
 
 	minetest.register_node("street_signs:sign_stop"..m, {
 		description = "R1-1: Stop sign",
@@ -1192,17 +1170,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_right_lane_ends"
 	})
 
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.47, -0.4, -0.75, 0.47, 0.4 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }
-		}
-	end
+	cbox = shift_to_pole({ -0.5, -0.47, -0.4, -0.4375, 0.47, 0.4 }, m)
 
 	minetest.register_node("street_signs:sign_left_on_green_arrow_only"..m, {
 		description = "R10-5: Left on green arrow only sign",
@@ -1222,17 +1190,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_left_on_green_arrow_only"
 	})
 
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.47, -0.32, -0.75, 0.47, 0.32 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.47, -0.32, -0.4375, 0.47, 0.32 }
-		}
-	end
+	cbox = shift_to_pole({ -0.5, -0.47, -0.32, -0.4375, 0.47, 0.32 }, m)
 
 	minetest.register_node("street_signs:sign_stop_here_on_red"..m, {
 		description = "R10-6: Stop here on red sign",
@@ -1252,17 +1210,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_stop_here_on_red"
 	})
 
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.625, -0.47, -0.75, 0.625, 0.47 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }
-		}
-	end
+	cbox = shift_to_pole({ -0.5, -0.625, -0.47, -0.4375, 0.625, 0.47 }, m)
 
 	minetest.register_node("street_signs:sign_keep_right"..m, {
 		description = "R4-7: Keep right sign",
@@ -1300,17 +1248,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_keep_left"
 	})
 
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.5, -0.5, -0.75, 0.5, 0.5 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }
-		}
-	end
+	cbox = shift_to_pole({ -0.5, -0.5, -0.5, -0.4375, 0.5, 0.5 }, m)
 
 	minetest.register_node("street_signs:sign_do_not_enter"..m, {
 		description = "R5-1: Do not enter sign",
@@ -1330,17 +1268,7 @@ for _, m in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_do_not_enter"
 	})
 
-	if m ~= "" then
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.8125, -0.4, -0.5625, -0.75, 0.4, 0.5625 }
-		}
-	else
-		cbox = {
-			type = "wallmounted",
-			wall_side = { -0.5, -0.4, -0.5625, -0.4375, 0.4, 0.5625 }
-		}
-	end
+	cbox = shift_to_pole({ -0.5, -0.4, -0.5625, -0.4375, 0.4, 0.5625 }, m)
 
 	minetest.register_node("street_signs:sign_wrong_way"..m, {
 		description = "R5-1a: Wrong way sign",
