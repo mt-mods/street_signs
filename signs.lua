@@ -1280,7 +1280,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 	})
 
 	minetest.register_node("street_signs:sign_ped_push_button_to_cross_r10_3i"..onpole, {
-		description = "R10-3i: Pedestrians, push button to cross (with street name)",
+		description = "R10-3i: Pedestrians, push button to cross (pointing right, with street name)",
 		paramtype = "light",
 		sunlight_propagates = true,
 		paramtype2 = "wallmounted",
@@ -1315,6 +1315,44 @@ for _, onpole in ipairs({"", "_onpole"}) do
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_ped_push_button_to_cross_r10_3i"
+	})
+
+	minetest.register_node("street_signs:sign_ped_push_button_to_cross_r10_3i_left"..onpole, {
+		description = "R10-3i: Pedestrians, push button to cross (pointing left, with street name)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_9x15"..onpole..".obj",
+		tiles = { "street_signs_ped_push_button_to_cross_r10_3i_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_ped_push_button_to_cross_r10_3i_left_inv.png",
+		wield_image = "street_signs_ped_push_button_to_cross_r10_3i_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 3,
+		vert_scaling = 12,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 15,
+		y_offset = 333,
+		chars_per_line = 25,
+		entity_info = {
+			mesh = "street_signs_generic_sign_9x15_entity"..onpole..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_ped_push_button_to_cross_r10_3i_left"
 	})
 
 	cbox = street_signs.make_selection_boxes(60, 24, onpole)
