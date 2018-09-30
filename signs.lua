@@ -1453,6 +1453,50 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_wrong_way"
 	})
 
+	cbox = street_signs.make_selection_boxes(54, 18, onpole)
+
+	minetest.register_node("street_signs:sign_one_way_left"..onpole, {
+		description = "R6-1: One way (left)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_54x18"..onpole..".obj",
+		tiles = { "street_signs_one_way_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_one_way_left_inv.png",
+		wield_image = "street_signs_one_way_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_one_way_left"
+	})
+
+	minetest.register_node("street_signs:sign_one_way_right"..onpole, {
+		description = "R6-1: One way (right)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_54x18"..onpole..".obj",
+		tiles = { "street_signs_one_way_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_one_way_right_inv.png",
+		wield_image = "street_signs_one_way_right_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_one_way_right"
+	})
+
 	cbox = street_signs.make_selection_boxes(36, 42, onpole)
 
 	minetest.register_node("street_signs:sign_use_lane_with_green_arrow"..onpole, {
