@@ -575,6 +575,160 @@ for _, onpole in ipairs({"", "_onpole"}) do
 
 	cbox = street_signs.make_selection_boxes(36, 36, onpole)
 
+	minetest.register_node("street_signs:sign_cross_road_ahead"..onpole, {
+		description = "W2-1: Cross-road ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_cross_road_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_cross_road_ahead_inv.png",
+		wield_image = "street_signs_cross_road_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_cross_road_ahead"
+	})
+
+	minetest.register_node("street_signs:sign_side_road_right_ahead"..onpole, {
+		description = "W2-2: Side road ahead (right)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_side_road_right_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_side_road_right_ahead_inv.png",
+		wield_image = "street_signs_side_road_right_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_side_road_right_ahead"
+	})
+
+	minetest.register_node("street_signs:sign_side_road_left_ahead"..onpole, {
+		description = "W2-2: Side road ahead (left)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_side_road_left_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_side_road_left_ahead_inv.png",
+		wield_image = "street_signs_side_road_left_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_side_road_left_ahead"
+	})
+
+	minetest.register_node("street_signs:sign_t_junction_ahead"..onpole, {
+		description = "W2-4: \"T\" junction ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_t_junction_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_t_junction_ahead_inv.png",
+		wield_image = "street_signs_t_junction_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_t_junction_ahead"
+	})
+
+	minetest.register_node("street_signs:sign_circular_intersection_ahead"..onpole, {
+		description = "W2-6: Roundabout/traffic circle ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_circular_intersection_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_circular_intersection_ahead_inv.png",
+		wield_image = "street_signs_circular_intersection_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_circular_intersection_ahead"
+	})
+
+	minetest.register_node("street_signs:sign_offset_side_road_left_ahead"..onpole, {
+		description = "W2-7L: Offset side-roads ahead (left first)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_offset_side_road_left_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_offset_side_road_left_ahead_inv.png",
+		wield_image = "street_signs_offset_side_road_left_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_offset_side_road_left_ahead"
+	})
+
+	minetest.register_node("street_signs:sign_offset_side_road_right_ahead"..onpole, {
+		description = "W2-7R: Offset side-roads ahead (right first)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_offset_side_road_right_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_offset_side_road_right_ahead_inv.png",
+		wield_image = "street_signs_offset_side_road_right_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_offset_side_road_right_ahead"
+	})
+
 	minetest.register_node("street_signs:sign_divided_highway_begins"..onpole, {
 		description = "W6-1: Divided highway begins sign",
 		paramtype = "light",
@@ -584,12 +738,12 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_warning_36x36"..onpole..".obj",
-		tiles = { "street_signs_sign_divided_highway_begins.png",
+		tiles = { "street_signs_divided_highway_begins.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
 		},
-		inventory_image = "street_signs_sign_divided_highway_begins_inv.png",
-		wield_image = "street_signs_sign_divided_highway_begins_inv.png",
+		inventory_image = "street_signs_divided_highway_begins_inv.png",
+		wield_image = "street_signs_divided_highway_begins_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
 		after_place_node = street_signs.after_place_node,
@@ -606,12 +760,12 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		node_box = cbox,
 		selection_box = cbox,
 		mesh = "street_signs_warning_36x36"..onpole..".obj",
-		tiles = { "street_signs_sign_divided_highway_ends.png",
+		tiles = { "street_signs_divided_highway_ends.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
 		},
-		inventory_image = "street_signs_sign_divided_highway_ends_inv.png",
-		wield_image = "street_signs_sign_divided_highway_ends_inv.png",
+		inventory_image = "street_signs_divided_highway_ends_inv.png",
+		wield_image = "street_signs_divided_highway_ends_inv.png",
 		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
 		default_color = "0",
 		after_place_node = street_signs.after_place_node,
@@ -639,6 +793,44 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_pedestrian_crossing"
+	})
+
+	minetest.register_node("street_signs:sign_low_clearance"..onpole, {
+		description = "W12-2: Low clearance",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_low_clearance.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_low_clearance_inv.png",
+		wield_image = "street_signs_low_clearance_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 1.1,
+		vert_scaling = 3,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 35,
+		chars_per_line = 15,
+		entity_info = {
+			mesh = "street_signs_warning_36x36_entity"..onpole..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_low_clearance"
 	})
 
 	minetest.register_node("street_signs:sign_signal_ahead"..onpole, {
@@ -771,6 +963,44 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		after_place_node = street_signs.after_place_node,
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_left_lane_ends"
+	})
+
+	minetest.register_node("street_signs:sign_hill_with_grade_ahead"..onpole, {
+		description = "W7-1a: Hill with grade ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_hill_with_grade_ahead.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_hill_with_grade_ahead_inv.png",
+		wield_image = "street_signs_hill_with_grade_ahead_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 1.9,
+		vert_scaling = 4.6,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 91,
+		chars_per_line = 15,
+		entity_info = {
+			mesh = "street_signs_warning_36x36_entity"..onpole..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_hill_with_grade_ahead"
 	})
 
 	minetest.register_node("street_signs:sign_right_lane_ends"..onpole, {
