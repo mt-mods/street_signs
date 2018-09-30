@@ -573,6 +573,30 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_yield"
 	})
 
+	cbox = street_signs.make_selection_boxes(48, 24, onpole)
+
+	minetest.register_node("street_signs:sign_two_direction_large_arrow"..onpole, {
+		description = "W1-7: Two direction large arrow",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_48x24"..onpole..".obj",
+		tiles = { "street_signs_two_direction_large_arrow.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_two_direction_large_arrow_inv.png",
+		wield_image = "street_signs_two_direction_large_arrow_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_two_direction_large_arrow"
+	})
+
 	cbox = street_signs.make_selection_boxes(36, 36, onpole)
 
 	minetest.register_node("street_signs:sign_cross_road_ahead"..onpole, {
