@@ -1255,6 +1255,28 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:no_turn_on_red_light"
 	})
 
+	cbox = street_signs.make_selection_boxes(41, 41, onpole)
+
+	minetest.register_node("street_signs:sign_rr_grade_crossbuck"..onpole, {
+		description = "R15-1: Railroad grade crossing (crossbuck)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_rr_grade_crossbuck"..onpole..".obj",
+		tiles = { "street_signs_rr_grade_crossbuck.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_rr_grade_crossbuck_inv.png",
+		wield_image = "street_signs_rr_grade_crossbuck_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_rr_grade_crossbuck"
+	})
 end
 
 cbox = {
