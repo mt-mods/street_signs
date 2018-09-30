@@ -1004,12 +1004,12 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 1,
-		horiz_scaling = 1.1,
+		horiz_scaling = 1.3,
 		vert_scaling = 3,
 		line_spacing = 1,
 		font_size = 31,
 		x_offset = 8,
-		y_offset = 35,
+		y_offset = 36,
 		chars_per_line = 15,
 		entity_info = {
 			mesh = "street_signs_warning_36x36_entity"..onpole..".obj",
@@ -1181,7 +1181,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		line_spacing = 1,
 		font_size = 31,
 		x_offset = 8,
-		y_offset = 91,
+		y_offset = 93,
 		chars_per_line = 15,
 		entity_info = {
 			mesh = "street_signs_warning_36x36_entity"..onpole..".obj",
