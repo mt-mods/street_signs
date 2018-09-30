@@ -1521,6 +1521,29 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_one_way_right"
 	})
 
+	cbox = street_signs.make_selection_boxes(30, 24, onpole)
+
+	minetest.register_node("street_signs:sign_divided_highway_with_cross_road"..onpole, {
+		description = "R6-3: divided highway with cross road",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_30x24"..onpole..".obj",
+		tiles = { "street_signs_divided_highway_with_cross_road.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_divided_highway_with_cross_road_inv.png",
+		wield_image = "street_signs_divided_highway_with_cross_road_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_divided_highway_with_cross_road"
+	})
+
 	cbox = street_signs.make_selection_boxes(36, 42, onpole)
 
 	minetest.register_node("street_signs:sign_use_lane_with_green_arrow"..onpole, {
