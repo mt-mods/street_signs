@@ -239,7 +239,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 	local on_rotate = street_signs.wallmounted_rotate
 	local pole_mount_tex = nil
 
-	if m ~= "" then
+	if onpole == "_onpole" then
 		nci = 1
 		on_rotate = nil
 		pole_mount_tex = "street_signs_pole_mount.png"
@@ -574,6 +574,50 @@ for _, onpole in ipairs({"", "_onpole"}) do
 	})
 
 	cbox = street_signs.make_selection_boxes(36, 36, onpole)
+
+	minetest.register_node("street_signs:sign_divided_highway_begins"..onpole, {
+		description = "W6-1: Divided highway begins sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_sign_divided_highway_begins.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_sign_divided_highway_begins_inv.png",
+		wield_image = "street_signs_sign_divided_highway_begins_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_divided_highway_begins"
+	})
+
+	minetest.register_node("street_signs:sign_divided_highway_ends"..onpole, {
+		description = "W6-2: Divided highway ends sign",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_sign_divided_highway_ends.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_sign_divided_highway_ends_inv.png",
+		wield_image = "street_signs_sign_divided_highway_ends_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_divided_highway_ends"
+	})
 
 	minetest.register_node("street_signs:sign_pedestrian_crossing"..onpole, {
 		description = "W11-2: Pedestrian crossing sign",
