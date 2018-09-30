@@ -1276,6 +1276,72 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_no_u_turn"
 	})
 
+	minetest.register_node("street_signs:sign_left_turn_only"..onpole, {
+		description = "R3-5: Left turn only",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		tiles = {
+			"street_signs_left_turn_only.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_left_turn_only_inv.png",
+		wield_image = "street_signs_left_turn_only_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_left_turn_only"
+	})
+
+	minetest.register_node("street_signs:sign_right_turn_only"..onpole, {
+		description = "R3-5: Right turn only",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		tiles = {
+			"street_signs_right_turn_only.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_right_turn_only_inv.png",
+		wield_image = "street_signs_right_turn_only_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_right_turn_only"
+	})
+
+	minetest.register_node("street_signs:sign_straight_through_only"..onpole, {
+		description = "R3-5a: Straight through only",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		tiles = {
+			"street_signs_straight_through_only.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_straight_through_only_inv.png",
+		wield_image = "street_signs_straight_through_only_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_straight_through_only"
+	})
+
 	minetest.register_node("street_signs:sign_left_lane_must_turn_left"..onpole, {
 		description = "R3-7: Left lane must turn left",
 		paramtype = "light",
