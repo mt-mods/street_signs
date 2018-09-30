@@ -1303,15 +1303,15 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		on_punch = street_signs.update_sign,
 		on_rotate = on_rotate,
 		number_of_lines = 1,
-		horiz_scaling = 4,
-		vert_scaling = 4.6,
+		horiz_scaling = 3,
+		vert_scaling = 12,
 		line_spacing = 1,
 		font_size = 31,
-		x_offset = 8,
-		y_offset = 91,
+		x_offset = 15,
+		y_offset = 333,
 		chars_per_line = 25,
 		entity_info = {
-			mesh = "street_signs_warning_9x15_entity"..onpole..".obj",
+			mesh = "street_signs_generic_sign_9x15_entity"..onpole..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_ped_push_button_to_cross_r10_3i"
