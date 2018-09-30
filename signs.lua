@@ -233,8 +233,6 @@ end
 
 for _, onpole in ipairs({"", "_onpole"}) do
 
-	cbox = street_signs.make_selection_boxes(36, 36, onpole)
-
 	local nci = nil
 	local on_rotate = street_signs.wallmounted_rotate
 	local pole_mount_tex = nil
@@ -379,7 +377,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_service_ev_charging"
 	})
 
-	cbox = street_signs.make_selection_boxes(48, 24, onpole)
+	cbox = street_signs.make_selection_boxes(36, 36, onpole)
 
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_us_route"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_us_interstate"..onpole)
