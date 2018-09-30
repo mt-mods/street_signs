@@ -1210,6 +1210,138 @@ for _, onpole in ipairs({"", "_onpole"}) do
 
 	cbox = street_signs.make_selection_boxes(36, 36, onpole)
 
+	minetest.register_node("street_signs:sign_no_right_turn"..onpole, {
+		description = "R3-1: No right turn",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		tiles = {
+			"street_signs_no_right_turn.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_no_right_turn_inv.png",
+		wield_image = "street_signs_no_right_turn_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_no_right_turn"
+	})
+
+	minetest.register_node("street_signs:sign_no_left_turn"..onpole, {
+		description = "R3-2: No left turn",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		tiles = {
+			"street_signs_no_left_turn.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_no_left_turn_inv.png",
+		wield_image = "street_signs_no_left_turn_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_no_left_turn"
+	})
+
+	minetest.register_node("street_signs:sign_no_u_turn"..onpole, {
+		description = "R3-4: No U-turn",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		tiles = {
+			"street_signs_no_u_turn.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_no_u_turn_inv.png",
+		wield_image = "street_signs_no_u_turn_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_no_u_turn"
+	})
+
+	minetest.register_node("street_signs:sign_left_lane_must_turn_left"..onpole, {
+		description = "R3-7: Left lane must turn left",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		tiles = {
+			"street_signs_left_lane_must_turn_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_left_lane_must_turn_left_inv.png",
+		wield_image = "street_signs_left_lane_must_turn_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_left_lane_must_turn_left"
+	})
+
+	minetest.register_node("street_signs:sign_right_lane_must_turn_right"..onpole, {
+		description = "R3-7: Right lane must turn right",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		tiles = {
+			"street_signs_right_lane_must_turn_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_right_lane_must_turn_right_inv.png",
+		wield_image = "street_signs_right_lane_must_turn_right_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_right_lane_must_turn_right"
+	})
+
+	minetest.register_node("street_signs:sign_no_straight_through"..onpole, {
+		description = "R3-27: No straight through",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		tiles = {
+			"street_signs_no_straight_through.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_no_straight_through_inv.png",
+		wield_image = "street_signs_no_straight_through_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_no_straight_through"
+	})
+
 	minetest.register_node("street_signs:sign_do_not_enter"..onpole, {
 		description = "R5-1: Do not enter sign",
 		paramtype = "light",
