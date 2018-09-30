@@ -978,6 +978,8 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_pedestrian_crossing"
 	})
 
+	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_low_clearance"..onpole)
+
 	minetest.register_node("street_signs:sign_low_clearance"..onpole, {
 		description = "W12-2: Low clearance",
 		paramtype = "light",
@@ -1147,6 +1149,8 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		on_rotate = on_rotate,
 		drop = "street_signs:sign_left_lane_ends"
 	})
+
+	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_hill_with_grade_ahead"..onpole)
 
 	minetest.register_node("street_signs:sign_hill_with_grade_ahead"..onpole, {
 		description = "W7-1a: Hill with grade ahead",
@@ -1345,6 +1349,8 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_ped_push_button_to_cross_r10_3e_left"
 	})
 
+	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_ped_push_button_to_cross_r10_3i"..onpole)
+
 	minetest.register_node("street_signs:sign_ped_push_button_to_cross_r10_3i"..onpole, {
 		description = "R10-3i: Pedestrians, push button to cross (pointing right, with street name)",
 		paramtype = "light",
@@ -1382,6 +1388,8 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		drop = "street_signs:sign_ped_push_button_to_cross_r10_3i"
 	})
+
+	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_ped_push_button_to_cross_r10_3i_left"..onpole)
 
 	minetest.register_node("street_signs:sign_ped_push_button_to_cross_r10_3i_left"..onpole, {
 		description = "R10-3i: Pedestrians, push button to cross (pointing left, with street name)",
