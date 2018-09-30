@@ -685,6 +685,31 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_stop"
 	})
 
+	cbox = street_signs.make_selection_boxes(36, 43.1, onpole, -7.1)
+
+	minetest.register_node("street_signs:sign_stop_all_way"..onpole, {
+		description = "R1-1 + R1-3P: Stop sign with \"all way\" plaque",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_stop_all_way"..onpole..".obj",
+		tiles = { "street_signs_stop.png",
+			"street_signs_sign_edge.png",
+			"street_signs_stop_all_way_plaque.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_stop_all_way_inv.png",
+		wield_image = "street_signs_stop_all_way_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_stop_all_way"
+	})
+
 	cbox = street_signs.make_selection_boxes(48, 48, onpole)
 
 	minetest.register_node("street_signs:sign_yield"..onpole, {
