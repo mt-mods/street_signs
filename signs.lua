@@ -245,6 +245,142 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		pole_mount_tex = "street_signs_pole_mount.png"
 	end
 
+	cbox = street_signs.make_selection_boxes(24, 24, onpole)
+
+	minetest.register_node("street_signs:sign_service_hospital"..onpole, {
+		description = "D9-2: General service: hospital",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		tiles = { "street_signs_service_hospital.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_service_hospital_inv.png",
+		wield_image = "street_signs_service_hospital_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_service_hospital"
+	})
+
+	minetest.register_node("street_signs:sign_service_handicapped"..onpole, {
+		description = "D9-6: General service: handicapped",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		tiles = { "street_signs_service_handicapped.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_service_handicapped_inv.png",
+		wield_image = "street_signs_service_handicapped_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_service_handicapped"
+	})
+
+	minetest.register_node("street_signs:sign_service_fuel"..onpole, {
+		description = "D9-7: General service: fuel/gas",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		tiles = { "street_signs_service_fuel.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_service_fuel_inv.png",
+		wield_image = "street_signs_service_fuel_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_service_fuel"
+	})
+
+	minetest.register_node("street_signs:sign_service_food"..onpole, {
+		description = "D9-8: General service: food",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		tiles = { "street_signs_service_food.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_service_food_inv.png",
+		wield_image = "street_signs_service_food_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_service_food"
+	})
+
+	minetest.register_node("street_signs:sign_service_lodging"..onpole, {
+		description = "D9-9: General service: lodging",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		tiles = { "street_signs_service_lodging.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_service_lodging_inv.png",
+		wield_image = "street_signs_service_lodging_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_service_lodging"
+	})
+
+	minetest.register_node("street_signs:sign_service_ev_charging"..onpole, {
+		description = "D9-11b: General service: EV charging",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		tiles = { "street_signs_service_ev_charging.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_service_ev_charging_inv.png",
+		wield_image = "street_signs_service_ev_charging_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_service_ev_charging"
+	})
+
+	cbox = street_signs.make_selection_boxes(48, 24, onpole)
+
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_us_route"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_us_interstate"..onpole)
 
