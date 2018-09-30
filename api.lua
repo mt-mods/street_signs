@@ -451,12 +451,12 @@ function street_signs.make_selection_boxes(sizex, sizey, onpole, xoffs, yoffs, z
 	local zo = zoffs and zoffs * 0.0254 or 0
 
 
-	local t = { -0.5 + zo, -ty + yo, -tx + xo, -0.4375 + zo, ty + yo, tx + xo }
+	local t = { -0.5, -ty + yo, -tx + xo, -0.4375, ty + yo, tx + xo }
 
 	if onpole == "_onpole" then
 		return {
 			type = "wallmounted",
-			wall_side = { t[1] - 0.3125, t[2], t[3], t[4] - 0.3125, t[5], t[6] },
+			wall_side = { t[1] - 0.3125 + zo, t[2], t[3], t[4] - 0.3125 + zo, t[5], t[6] },
 			wall_top = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
 			wall_bottom = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5 },
 		}
@@ -464,8 +464,8 @@ function street_signs.make_selection_boxes(sizex, sizey, onpole, xoffs, yoffs, z
 		return {
 			type = "wallmounted",
 			wall_side = t,
-			wall_top = { t[3] - xo, -t[1] + zo, t[2] + yo, t[6] - xo, -t[4] + zo, t[5] + yo},
-			wall_bottom = { t[3] - xo, t[1] + zo, t[2] + yo, t[6] - xo, t[4] + zo, t[5] + yo }
+			wall_top = { t[3] - xo, -t[1], t[2] + yo, t[6] - xo, -t[4], t[5] + yo},
+			wall_bottom = { t[3] - xo, t[1], t[2] + yo, t[6] - xo, t[4], t[5] + yo }
 		}
 	end
 end
