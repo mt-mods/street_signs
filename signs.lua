@@ -1211,7 +1211,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 
 	cbox = street_signs.make_selection_boxes(36, 42, onpole)
 
-	minetest.register_node("street_signs:use_lane_with_green_arrow"..onpole, {
+	minetest.register_node("street_signs:sign_use_lane_with_green_arrow"..onpole, {
 		description = "R10-8: Use lane with green arrow",
 		paramtype = "light",
 		sunlight_propagates = true,
@@ -1234,7 +1234,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 
 	cbox = street_signs.make_selection_boxes(36, 48, onpole)
 
-	minetest.register_node("street_signs:no_turn_on_red_light"..onpole, {
+	minetest.register_node("street_signs:sign_no_turn_on_red_light"..onpole, {
 		description = "R10-11: No turn on red light",
 		paramtype = "light",
 		sunlight_propagates = true,
