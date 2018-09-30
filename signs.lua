@@ -1377,6 +1377,30 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_ped_push_button_to_cross_r10_3i_left"
 	})
 
+	cbox = street_signs.make_selection_boxes(9, 12, onpole, 0, 0, -1.25)
+
+	minetest.register_node("street_signs:sign_ped_push_button_to_turn_on_warning_lights"..onpole, {
+		description = "R10-25: Pedestrians, push button to turn on warning lights",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_9x12"..onpole..".obj",
+		tiles = { "street_signs_ped_push_button_to_turn_on_warning_lights.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_ped_push_button_to_turn_on_warning_lights_inv.png",
+		wield_image = "street_signs_ped_push_button_to_turn_on_warning_lights_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_ped_push_button_to_turn_on_warning_lights"
+	})
+
 	cbox = street_signs.make_selection_boxes(60, 24, onpole)
 
 	minetest.register_node("street_signs:sign_roundabout_directional"..onpole, {
