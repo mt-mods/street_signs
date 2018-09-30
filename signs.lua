@@ -2048,3 +2048,16 @@ for _, d in ipairs({"l", "c", "r"}) do
 		groups = {choppy=2, dig_immediate=2},
 	})
 end
+
+-- restore signs' text after /clearobjects and the like, the next time
+-- a block is reloaded by the server.
+
+minetest.register_lbm({
+	nodenames = street_signs.lbm_restore_nodes,
+	name = "street_signs:restore_sign_text",
+	label = "Restore sign text",
+	run_at_every_load = true,
+	action = function(pos, node)
+		street_signs.update_sign(pos)
+	end
+})

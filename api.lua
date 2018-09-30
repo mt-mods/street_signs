@@ -485,16 +485,3 @@ street_signs.after_place_node = function(pos, placer, itemstack, pointed_thing)
 		minetest.swap_node(pos, {name = itemstack:get_name().."_onpole", param2 = node.param2})
 	end
 end
-
--- restore signs' text after /clearobjects and the like, the next time
--- a block is reloaded by the server.
-
-minetest.register_lbm({
-	nodenames = street_signs.lbm_restore_nodes,
-	name = "street_signs:restore_sign_text",
-	label = "Restore sign text",
-	run_at_every_load = true,
-	action = function(pos, node)
-		street_signs.update_sign(pos)
-	end
-})
