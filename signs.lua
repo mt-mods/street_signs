@@ -1605,6 +1605,28 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_no_u_turn"
 	})
 
+	minetest.register_node("street_signs:sign_u_turn_here"..onpole, {
+		description = "U-turn here",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
+		tiles = {
+			"street_signs_u_turn_here.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_u_turn_here_inv.png",
+		wield_image = "street_signs_u_turn_here_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_u_turn_here"
+	})
+
 	minetest.register_node("street_signs:sign_left_turn_only"..onpole, {
 		description = "R3-5: Left turn only",
 		paramtype = "light",
