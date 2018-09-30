@@ -441,9 +441,15 @@ minetest.register_entity("street_signs:text", {
 })
 
 -- make selection boxes
+-- sizex/sizey specified in inches because that's what MUTCD uses.
 
-function street_signs.shift_to_pole(t, m)
-	if m ~= "" then
+function street_signs.make_selection_boxes(sizex, sizey, onpole)
+	local tx = (sizex * 0.0254 ) / 2
+	local ty = (sizey * 0.0254 ) / 2
+
+	local t = { -0.5, -ty, -tx, -0.4375, ty, tx }
+
+	if onpole == "_onpole" then
 		return {
 			type = "wallmounted",
 			wall_side = { t[1] - 0.3125, t[2], t[3], t[4] - 0.3125, t[5], t[6] },
