@@ -255,7 +255,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_24x24"..onpole..".obj",
 		tiles = { "street_signs_service_hospital.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -277,7 +277,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_24x24"..onpole..".obj",
 		tiles = { "street_signs_service_handicapped.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -299,7 +299,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_24x24"..onpole..".obj",
 		tiles = { "street_signs_service_fuel.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -321,7 +321,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_24x24"..onpole..".obj",
 		tiles = { "street_signs_service_food.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -343,7 +343,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_24x24"..onpole..".obj",
 		tiles = { "street_signs_service_lodging.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -365,7 +365,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_24x24"..onpole..".obj",
 		tiles = { "street_signs_service_ev_charging.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -392,7 +392,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
 		tiles = { "street_signs_us_route.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -416,7 +416,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		y_offset = 11,
 		chars_per_line = 3,
 		entity_info = {
-			mesh = "street_signs_regulatory_36x36_entity"..onpole..".obj",
+			mesh = "street_signs_generic_sign_36x36_entity"..onpole..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_us_route"
@@ -629,7 +629,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_30x36"..onpole..".obj",
 		tiles = { "street_signs_speed_limit.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -653,7 +653,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		y_offset = 37,
 		chars_per_line = 4,
 		entity_info = {
-			mesh = "street_signs_regulatory_30x36_entity"..onpole..".obj",
+			mesh = "street_signs_generic_sign_30x36_entity"..onpole..".obj",
 			yaw = wmyaw
 		},
 		drop = "street_signs:sign_speed_limit"
@@ -685,7 +685,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_stop"
 	})
 
-	cbox = street_signs.make_selection_boxes(36, 43.1, onpole, -7.1)
+	cbox = street_signs.make_selection_boxes(36, 43.1, onpole, 0, -3.55, 0)
 
 	minetest.register_node("street_signs:sign_stop_all_way"..onpole, {
 		description = "R1-1 + R1-3P: Stop sign with \"all way\" plaque",
@@ -744,7 +744,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_48x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_48x24"..onpole..".obj",
 		tiles = { "street_signs_two_direction_large_arrow.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1233,6 +1233,90 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_right_lane_ends"
 	})
 
+	cbox = street_signs.make_selection_boxes(9, 15, onpole, 0, 0, -1.25)
+
+	minetest.register_node("street_signs:sign_ped_push_button_to_cross_r10_3a"..onpole, {
+		description = "R10-3a: Pedestrians, push button to cross",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_9x15"..onpole..".obj",
+		tiles = { "street_signs_ped_push_button_to_cross_r10_3a.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_ped_push_button_to_cross_r10_3a_inv.png",
+		wield_image = "street_signs_ped_push_button_to_cross_r10_3a_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_ped_push_button_to_cross_r10_3a"
+	})
+
+	minetest.register_node("street_signs:sign_ped_push_button_to_cross_r10_3e"..onpole, {
+		description = "R10-3e: Pedestrians, push button to cross",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_9x15"..onpole..".obj",
+		tiles = { "street_signs_ped_push_button_to_cross_r10_3e.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_ped_push_button_to_cross_r10_3e_inv.png",
+		wield_image = "street_signs_ped_push_button_to_cross_r10_3e_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_ped_push_button_to_cross_r10_3e"
+	})
+
+	minetest.register_node("street_signs:sign_ped_push_button_to_cross_r10_3i"..onpole, {
+		description = "R10-3i: Pedestrians, push button to cross (with street name)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_9x15"..onpole..".obj",
+		tiles = { "street_signs_ped_push_button_to_cross_r10_3i.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_ped_push_button_to_cross_r10_3i_inv.png",
+		wield_image = "street_signs_ped_push_button_to_cross_r10_3i_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 4,
+		vert_scaling = 4.6,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 91,
+		chars_per_line = 25,
+		entity_info = {
+			mesh = "street_signs_warning_9x15_entity"..onpole..".obj",
+			yaw = wmyaw
+		},
+		drop = "street_signs:sign_ped_push_button_to_cross_r10_3i"
+	})
+
 	cbox = street_signs.make_selection_boxes(60, 24, onpole)
 
 	minetest.register_node("street_signs:sign_roundabout_directional"..onpole, {
@@ -1243,7 +1327,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_60x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_60x24"..onpole..".obj",
 		tiles = { "street_signs_roundabout_directional.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1266,7 +1350,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_30x36"..onpole..".obj",
 		tiles = { "street_signs_left_on_green_arrow_only.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1289,7 +1373,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_24x36"..onpole..".obj",
 		tiles = { "street_signs_stop_here_on_red.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1312,7 +1396,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_30x36"..onpole..".obj",
 		tiles = { "street_signs_left_turn_yield_on_green_light.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1335,7 +1419,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_24x30"..onpole..".obj",
+		mesh = "street_signs_generic_sign_24x30"..onpole..".obj",
 		tiles = { "street_signs_crosswalk_stop_on_red_light.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1359,7 +1443,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x48"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x48"..onpole..".obj",
 		tiles = { "street_signs_keep_right.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1380,7 +1464,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x48"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x48"..onpole..".obj",
 		tiles = { "street_signs_keep_left.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1403,7 +1487,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
 		tiles = {
 			"street_signs_no_right_turn.png",
 			"street_signs_sign_edge.png",
@@ -1425,7 +1509,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
 		tiles = {
 			"street_signs_no_left_turn.png",
 			"street_signs_sign_edge.png",
@@ -1447,7 +1531,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
 		tiles = {
 			"street_signs_no_u_turn.png",
 			"street_signs_sign_edge.png",
@@ -1469,7 +1553,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_30x36"..onpole..".obj",
 		tiles = {
 			"street_signs_left_turn_only.png",
 			"street_signs_sign_edge.png",
@@ -1491,7 +1575,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_30x36"..onpole..".obj",
 		tiles = {
 			"street_signs_right_turn_only.png",
 			"street_signs_sign_edge.png",
@@ -1513,7 +1597,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_30x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_30x36"..onpole..".obj",
 		tiles = {
 			"street_signs_straight_through_only.png",
 			"street_signs_sign_edge.png",
@@ -1535,7 +1619,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
 		tiles = {
 			"street_signs_left_lane_must_turn_left.png",
 			"street_signs_sign_edge.png",
@@ -1557,7 +1641,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
 		tiles = {
 			"street_signs_right_lane_must_turn_right.png",
 			"street_signs_sign_edge.png",
@@ -1579,7 +1663,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
 		tiles = {
 			"street_signs_no_straight_through.png",
 			"street_signs_sign_edge.png",
@@ -1601,7 +1685,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x36"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x36"..onpole..".obj",
 		tiles = {
 			"street_signs_do_not_enter.png",
 			"street_signs_sign_edge.png",
@@ -1625,7 +1709,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_42x30"..onpole..".obj",
+		mesh = "street_signs_generic_sign_42x30"..onpole..".obj",
 		tiles = { "street_signs_wrong_way.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1648,7 +1732,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_54x18"..onpole..".obj",
+		mesh = "street_signs_generic_sign_54x18"..onpole..".obj",
 		tiles = { "street_signs_one_way_left.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1669,7 +1753,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_54x18"..onpole..".obj",
+		mesh = "street_signs_generic_sign_54x18"..onpole..".obj",
 		tiles = { "street_signs_one_way_right.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1692,7 +1776,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_30x24"..onpole..".obj",
+		mesh = "street_signs_generic_sign_30x24"..onpole..".obj",
 		tiles = { "street_signs_divided_highway_with_cross_road.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1715,7 +1799,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x42"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x42"..onpole..".obj",
 		tiles = { "street_signs_use_lane_with_green_arrow.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
@@ -1738,7 +1822,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_regulatory_36x48"..onpole..".obj",
+		mesh = "street_signs_generic_sign_36x48"..onpole..".obj",
 		tiles = { "street_signs_no_turn_on_red_light.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
