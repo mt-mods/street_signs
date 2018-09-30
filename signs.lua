@@ -1233,6 +1233,30 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_right_lane_ends"
 	})
 
+	cbox = street_signs.make_selection_boxes(24, 30, onpole)
+
+	minetest.register_node("street_signs:sign_do_not_stop_on_tracks"..onpole, {
+		description = "R8-8: Do not stop on tracks",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_24x30"..onpole..".obj",
+		tiles = { "street_signs_do_not_stop_on_tracks.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_do_not_stop_on_tracks_inv.png",
+		wield_image = "street_signs_do_not_stop_on_tracks.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_do_not_stop_on_tracks"
+	})
+
 	cbox = street_signs.make_selection_boxes(9, 15, onpole, 0, 0, -1.25)
 
 	minetest.register_node("street_signs:sign_ped_push_button_to_cross_r10_3a"..onpole, {
