@@ -1003,6 +1003,29 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_hill_with_grade_ahead"
 	})
 
+	minetest.register_node("street_signs:sign_rr_grade_crossing_advance"..onpole, {
+		description = "W10-1: Railroad grade crossing advance warning",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_rr_grade_crossing_advance"..onpole..".obj",
+		tiles = { "street_signs_rr_grade_crossing_advance.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_rr_grade_crossing_advance_inv.png",
+		wield_image = "street_signs_rr_grade_crossing_advance_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_rr_grade_crossing_advance"
+	})
+
+
 	minetest.register_node("street_signs:sign_right_lane_ends"..onpole, {
 		description = "W4-2: Right lane ends sign",
 		paramtype = "light",
