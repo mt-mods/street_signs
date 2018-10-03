@@ -15,6 +15,294 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		pole_mount_tex = "street_signs_pole_mount.png"
 	end
 
+	cbox = street_signs.make_selection_boxes(36, 36, onpole)
+
+	minetest.register_node("street_signs:sign_road_turns_sharp_left"..onpole, {
+		description = "W1-1: Road turns, sharp left ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_sharp_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_sharp_left_inv.png",
+		wield_image = "street_signs_road_turns_sharp_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_sharp_left"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_sharp_right"..onpole, {
+		description = "W1-1: Road turns, sharp right ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_sharp_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_sharp_right_inv.png",
+		wield_image = "street_signs_road_turns_sharp_right_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_sharp_right"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_left"..onpole, {
+		description = "W1-2: Road turns left ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_left_inv.png",
+		wield_image = "street_signs_road_turns_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_left"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_right"..onpole, {
+		description = "W1-2: Road turns right ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_right_inv.png",
+		wield_image = "street_signs_road_turns_right_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_right"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_dog_leg_left"..onpole, {
+		description = "W1-3: Road turns, sharp dog-leg to the left ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_dog_leg_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_dog_leg_left_inv.png",
+		wield_image = "street_signs_road_turns_dog_leg_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_dog_leg_left"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_dog_leg_right"..onpole, {
+		description = "W1-3: Road turns, sharp dog-leg to the right ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_dog_leg_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_dog_leg_right_inv.png",
+		wield_image = "street_signs_road_turns_dog_leg_right_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_dog_leg_right"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_dog_leg_curve_left"..onpole, {
+		description = "W1-4: Road turns, dog-leg curve to the left ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_dog_leg_curve_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_dog_leg_curve_left_inv.png",
+		wield_image = "street_signs_road_turns_dog_leg_curve_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_dog_leg_curve_left"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_dog_leg_curve_right"..onpole, {
+		description = "W1-4: Road turns, dog-leg curve to the right ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_dog_leg_curve_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_dog_leg_curve_right_inv.png",
+		wield_image = "street_signs_road_turns_dog_leg_curve_right_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_dog_leg_curve_right"
+	})
+
+	minetest.register_node("street_signs:sign_road_winding"..onpole, {
+		description = "W1-5: Winding road ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_winding.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_winding_inv.png",
+		wield_image = "street_signs_road_winding_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_winding"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_hairpin_left"..onpole, {
+		description = "W1-11: Road turns, hairpin curve to the left ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_hairpin_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_hairpin_left_inv.png",
+		wield_image = "street_signs_road_turns_hairpin_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_hairpin_left"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_hairpin_right"..onpole, {
+		description = "W1-11: Road turns, hairpin curve to the right ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_hairpin_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_hairpin_right_inv.png",
+		wield_image = "street_signs_road_turns_hairpin_right_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_hairpin_right"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_270_left"..onpole, {
+		description = "W1-15: Road turns, 270 degree loop to the left ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_270_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_270_left_inv.png",
+		wield_image = "street_signs_road_turns_270_left_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_270_left"
+	})
+
+	minetest.register_node("street_signs:sign_road_turns_270_right"..onpole, {
+		description = "W1-15: Road turns, 270 degree loop to the right ahead",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_warning_36x36"..onpole..".obj",
+		tiles = { "street_signs_road_turns_270_right.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_road_turns_270_right_inv.png",
+		wield_image = "street_signs_road_turns_270_right_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_road_turns_270_right"
+	})
+
 	cbox = street_signs.make_selection_boxes(48, 24, onpole)
 
 	minetest.register_node("street_signs:sign_two_direction_large_arrow"..onpole, {
