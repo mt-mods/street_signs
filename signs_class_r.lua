@@ -932,6 +932,31 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_rr_grade_crossbuck"
 	})
 
+	cbox = street_signs.make_selection_boxes(24, 12, onpole, 0, 12, 0)
+
+	minetest.register_node("street_signs:sign_rr_exempt_r15_3p"..onpole, {
+		description = "R15-3P: Railroad \"EXEMPT\" sign (white)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_24x12_top"..onpole..".obj",
+		tiles = { "street_signs_rr_exempt_r15_3p.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_rr_exempt_r15_3p_inv.png",
+		wield_image = "street_signs_rr_exempt_r15_3p_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_rr_exempt_r15_3p"
+	})
+
+
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_ped_push_button_to_cross_r10_3i"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_ped_push_button_to_cross_r10_3i_left"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_speed_limit"..onpole)

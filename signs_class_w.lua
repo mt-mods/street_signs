@@ -495,6 +495,30 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_rr_grade_crossing_advance"
 	})
 
+	cbox = street_signs.make_selection_boxes(24, 12, onpole, 0, 12, 0)
+
+	minetest.register_node("street_signs:sign_rr_exempt_w10_1ap"..onpole, {
+		description = "W10-1aP: Railroad \"EXEMPT\" sign (yellow)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_24x12_top"..onpole..".obj",
+		tiles = { "street_signs_rr_exempt_w10_1ap.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_rr_exempt_w10_1ap_inv.png",
+		wield_image = "street_signs_rr_exempt_w10_1ap_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_rr_exempt_w10_1ap"
+	})
+
 	cbox = street_signs.make_selection_boxes(36, 36, onpole)
 
 	minetest.register_node("street_signs:sign_pedestrian_crossing"..onpole, {
