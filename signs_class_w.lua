@@ -697,8 +697,10 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_advisory_speed_ms"
 	})
 
-
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_hill_with_grade_ahead"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_low_clearance"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_distance_2_lines"..onpole)
+	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_advisory_speed_mph"..onpole)
+	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_advisory_speed_kmh"..onpole)
+	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_advisory_speed_ms"..onpole)
 end
