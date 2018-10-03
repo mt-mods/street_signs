@@ -431,6 +431,46 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_hill_with_grade_ahead"
 	})
 
+	cbox = street_signs.make_selection_boxes(24, 18, onpole, 0, 9.75, 0)
+
+	minetest.register_node("street_signs:sign_distance_2_lines"..onpole, {
+		description = "W7-3aP: Blank distance sign (like \"Next X Miles\", 2 lines)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_24x18_top"..onpole..".obj",
+		tiles = { "street_signs_distance_2_lines.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_distance_2_lines_inv.png",
+		wield_image = "street_signs_distance_2_lines_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
+		on_rotate = on_rotate,
+		number_of_lines = 2,
+		horiz_scaling = 1.8,
+		vert_scaling = 1.25,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 12,
+		y_offset = 12,
+		chars_per_line = 20,
+		entity_info = {
+			mesh = "street_signs_generic_sign_24x18_top_entity"..onpole..".obj",
+			yaw = street_signs.wallmounted_yaw
+		},
+		drop = "street_signs:sign_distance_2_lines"
+	})
+
 	cbox = street_signs.make_selection_boxes(30, 30, onpole)
 
 	minetest.register_node("street_signs:sign_rr_grade_crossing_advance"..onpole, {
