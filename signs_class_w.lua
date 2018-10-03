@@ -583,4 +583,5 @@ for _, onpole in ipairs({"", "_onpole"}) do
 
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_hill_with_grade_ahead"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_low_clearance"..onpole)
+	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_distance_2_lines"..onpole)
 end
