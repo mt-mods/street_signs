@@ -580,6 +580,27 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_roundabout_directional"
 	})
 
+	minetest.register_node("street_signs:sign_roundabout_directional_left"..onpole, {
+		description = "R6-4b: Roundabout direction (4 chevrons, pointing left)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_60x24"..onpole..".obj",
+		tiles = { "street_signs_roundabout_directional_left.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_roundabout_directional_left_inv.png",
+		wield_image = "street_signs_roundabout_directional_left.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_roundabout_directional_left"
+	})
+
 	cbox = street_signs.make_selection_boxes(24, 30, onpole)
 
 	minetest.register_node("street_signs:sign_do_not_stop_on_tracks"..onpole, {
