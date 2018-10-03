@@ -581,6 +581,123 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_low_clearance"
 	})
 
+	cbox = street_signs.make_selection_boxes(18, 18, onpole, 0, 10, 0)
+
+	minetest.register_node("street_signs:sign_advisory_speed_mph"..onpole, {
+		description = "W13-1P: Advisory speed (MPH)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_18x18_top"..onpole..".obj",
+		tiles = { "street_signs_advisory_speed_mph.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_advisory_speed_mph_inv.png",
+		wield_image = "street_signs_advisory_speed_mph_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 1.25,
+		vert_scaling = 1.5,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 5,
+		chars_per_line = 8,
+		entity_info = {
+			mesh = "street_signs_generic_sign_18x18_top_entity"..onpole..".obj",
+			yaw = street_signs.wallmounted_yaw
+		},
+		drop = "street_signs:sign_advisory_speed_mph"
+	})
+
+	minetest.register_node("street_signs:sign_advisory_speed_kmh"..onpole, {
+		description = "W13-1P: Advisory speed (km/h)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_18x18_top"..onpole..".obj",
+		tiles = { "street_signs_advisory_speed_kmh.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_advisory_speed_kmh_inv.png",
+		wield_image = "street_signs_advisory_speed_kmh_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 1.25,
+		vert_scaling = 1.5,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 5,
+		chars_per_line = 8,
+		entity_info = {
+			mesh = "street_signs_generic_sign_18x18_top_entity"..onpole..".obj",
+			yaw = street_signs.wallmounted_yaw
+		},
+		drop = "street_signs:sign_advisory_speed_kmh"
+	})
+
+	minetest.register_node("street_signs:sign_advisory_speed_ms"..onpole, {
+		description = "W13-1P: Advisory speed (m/s)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_18x18_top"..onpole..".obj",
+		tiles = { "street_signs_advisory_speed_ms.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_advisory_speed_ms_inv.png",
+		wield_image = "street_signs_advisory_speed_ms_inv.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		default_color = "0",
+		on_construct = street_signs.construct_sign,
+		on_destruct = street_signs.destruct_sign,
+		after_place_node = street_signs.after_place_node,
+		on_receive_fields = street_signs.receive_fields,
+		on_punch = street_signs.update_sign,
+		on_rotate = on_rotate,
+		number_of_lines = 1,
+		horiz_scaling = 1.25,
+		vert_scaling = 1.5,
+		line_spacing = 1,
+		font_size = 31,
+		x_offset = 8,
+		y_offset = 5,
+		chars_per_line = 8,
+		entity_info = {
+			mesh = "street_signs_generic_sign_18x18_top_entity"..onpole..".obj",
+			yaw = street_signs.wallmounted_yaw
+		},
+		drop = "street_signs:sign_advisory_speed_ms"
+	})
+
+
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_hill_with_grade_ahead"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_low_clearance"..onpole)
 	table.insert(street_signs.lbm_restore_nodes, "street_signs:sign_distance_2_lines"..onpole)
