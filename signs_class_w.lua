@@ -481,7 +481,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drawtype = "mesh",
 		node_box = cbox,
 		selection_box = cbox,
-		mesh = "street_signs_rr_grade_crossing_advance"..onpole..".obj",
+		mesh = "street_signs_generic_sign_30dia"..onpole..".obj",
 		tiles = { "street_signs_rr_grade_crossing_advance.png",
 			"street_signs_sign_edge.png",
 			pole_mount_tex
