@@ -601,6 +601,50 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		drop = "street_signs:sign_roundabout_directional_left"
 	})
 
+	cbox = street_signs.make_selection_boxes(30, 30, onpole)
+
+	minetest.register_node("street_signs:sign_roundabout_counter_clockwise"..onpole, {
+		description = "R6-5P: Roundabout plaque (to the left/counter-clockwise)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_30x30"..onpole..".obj",
+		tiles = { "street_signs_roundabout_counter_clockwise.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_roundabout_counter_clockwise_inv.png",
+		wield_image = "street_signs_roundabout_counter_clockwise.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_roundabout_counter_clockwise"
+	})
+
+	minetest.register_node("street_signs:sign_roundabout_clockwise"..onpole, {
+		description = "R6-5P: Roundabout plaque (to the right/clockwise)",
+		paramtype = "light",
+		sunlight_propagates = true,
+		paramtype2 = "wallmounted",
+		drawtype = "mesh",
+		node_box = cbox,
+		selection_box = cbox,
+		mesh = "street_signs_generic_sign_30x30"..onpole..".obj",
+		tiles = { "street_signs_roundabout_clockwise.png",
+			"street_signs_sign_edge.png",
+			pole_mount_tex
+		},
+		inventory_image = "street_signs_roundabout_clockwise_inv.png",
+		wield_image = "street_signs_roundabout_clockwise.png",
+		groups = {choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		after_place_node = street_signs.after_place_node,
+		on_rotate = on_rotate,
+		drop = "street_signs:sign_roundabout_clockwise"
+	})
+
 	cbox = street_signs.make_selection_boxes(24, 30, onpole)
 
 	minetest.register_node("street_signs:sign_do_not_stop_on_tracks"..onpole, {
