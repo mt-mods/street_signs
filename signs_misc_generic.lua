@@ -194,7 +194,7 @@ for _, s in ipairs(street_signs.big_sign_sizes) do
 		local defc = c[2]
 
 		minetest.register_node("street_signs:sign_highway_"..size.."_"..color, {
-			description = "Generic highway sign (3-line, "..size..", "..color..")",
+			description = "Generic highway sign ("..nlines.."-line, "..size..", "..color..")",
 			inventory_image = "street_signs_generic_highway_"..size.."_"..color.."_inv.png",
 			wield_image = "street_signs_generic_highway_"..size.."_"..color.."_inv.png",
 			paramtype = "light",
@@ -231,7 +231,7 @@ for _, s in ipairs(street_signs.big_sign_sizes) do
 		})
 
 		minetest.register_node("street_signs:sign_highway_widefont_"..size.."_"..color, {
-			description = "Generic highway sign (Wide font, 3-line, "..size..", "..color..")",
+			description = "Generic highway sign (Wide font, "..nlines.."-line, "..size..", "..color..")",
 			inventory_image = "street_signs_generic_highway_"..size.."_"..color.."_inv.png",
 			wield_image = "street_signs_generic_highway_"..size.."_"..color.."_inv.png",
 			paramtype = "light",
