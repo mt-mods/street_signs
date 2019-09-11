@@ -183,7 +183,9 @@ for _, s in ipairs(street_signs.big_sign_sizes) do
 	local yoffs =  s[7]
 	local cbox = {
 		type = "wallmounted",
-		wall_side = s[8]
+		wall_side = s[8],
+		wall_top =    { -s[8][3], -s[8][1], s[8][2], -s[8][6], -s[8][4], s[8][5] },
+		wall_bottom = {  s[8][3],  s[8][1], s[8][2],  s[8][6],  s[8][4], s[8][5] }
 	}
 
 	for _, c in ipairs(street_signs.big_sign_colors) do
