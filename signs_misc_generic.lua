@@ -13,6 +13,9 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		pole_mount_tex = "signs_lib_pole_mount.png"
 	end
 
+	local groups = table.copy(signs_lib.standard_steel_groups)
+	groups.not_in_creative_inventory = nci
+
 	cbox = signs_lib.make_selection_boxes(36, 36, onpole)
 
 	minetest.register_node("street_signs:sign_warning_3_line"..onpole, {
@@ -30,7 +33,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		inventory_image = "street_signs_warning_3_line_inv.png",
 		wield_image = "street_signs_warning_3_line_inv.png",
-		groups = {sign = 1, choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		groups = groups,
 		default_color = "0",
 		on_rightclick = signs_lib.construct_sign,
 		on_construct = signs_lib.construct_sign,
@@ -69,7 +72,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		inventory_image = "street_signs_warning_4_line_inv.png",
 		wield_image = "street_signs_warning_4_line_inv.png",
-		groups = {sign = 1, choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		groups = groups,
 		default_color = "0",
 		on_rightclick = signs_lib.construct_sign,
 		on_construct = signs_lib.construct_sign,
@@ -108,7 +111,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		inventory_image = "street_signs_warning_orange_3_line_inv.png",
 		wield_image = "street_signs_warning_orange_3_line_inv.png",
-		groups = {sign = 1, choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		groups = groups,
 		default_color = "0",
 		on_rightclick = signs_lib.construct_sign,
 		on_construct = signs_lib.construct_sign,
@@ -147,7 +150,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		inventory_image = "street_signs_warning_orange_4_line_inv.png",
 		wield_image = "street_signs_warning_orange_4_line_inv.png",
-		groups = {sign = 1, choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		groups = groups,
 		default_color = "0",
 		on_rightclick = signs_lib.construct_sign,
 		on_construct = signs_lib.construct_sign,
@@ -214,7 +217,7 @@ for _, s in ipairs(street_signs.big_sign_sizes) do
 				"street_signs_generic_highway_edges.png"
 			},
 			default_color = defc,
-			groups = {sign = 1, choppy=2, dig_immediate=2},
+			groups = signs_lib.standard_steel_groups,
 			on_rightclick = signs_lib.construct_sign,
 			on_construct = signs_lib.construct_sign,
 			on_destruct = signs_lib.destruct_sign,
@@ -252,7 +255,7 @@ for _, s in ipairs(street_signs.big_sign_sizes) do
 				"street_signs_generic_highway_edges.png"
 			},
 			default_color = defc,
-			groups = {sign = 1, choppy=2, dig_immediate=2},
+			groups = signs_lib.standard_steel_groups,
 			on_rightclick = signs_lib.construct_sign,
 			on_construct = signs_lib.construct_sign,
 			on_destruct = signs_lib.destruct_sign,

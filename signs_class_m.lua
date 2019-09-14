@@ -15,6 +15,9 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		pole_mount_tex = "signs_lib_pole_mount.png"
 	end
 
+	local groups = table.copy(signs_lib.standard_steel_groups)
+	groups.not_in_creative_inventory = nci
+
 	cbox = signs_lib.make_selection_boxes(36, 36, onpole)
 
 	minetest.register_node("street_signs:sign_us_route"..onpole, {
@@ -32,7 +35,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		inventory_image = "street_signs_us_route_inv.png",
 		wield_image = "street_signs_us_route_inv.png",
-		groups = {sign = 1, choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		groups = groups,
 		default_color = "0",
 		on_rightclick = signs_lib.construct_sign,
 		on_construct = signs_lib.construct_sign,
@@ -71,7 +74,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		inventory_image = "street_signs_us_interstate_inv.png",
 		wield_image = "street_signs_us_interstate_inv.png",
-		groups = {sign = 1, choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		groups = groups,
 		default_color = "f",
 		on_rightclick = signs_lib.construct_sign,
 		on_construct = signs_lib.construct_sign,
@@ -112,7 +115,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		inventory_image = "street_signs_detour_right_m4_10_inv.png",
 		wield_image = "street_signs_detour_right_m4_10_inv.png",
-		groups = {sign = 1, choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		groups = groups,
 		default_color = "0",
 		after_place_node = signs_lib.after_place_node,
 		on_rotate = signs_lib.wallmounted_rotate,
@@ -134,7 +137,7 @@ for _, onpole in ipairs({"", "_onpole"}) do
 		},
 		inventory_image = "street_signs_detour_left_m4_10_inv.png",
 		wield_image = "street_signs_detour_left_m4_10_inv.png",
-		groups = {sign = 1, choppy=2, dig_immediate=2, not_in_creative_inventory = nci},
+		groups = groups,
 		default_color = "0",
 		after_place_node = signs_lib.after_place_node,
 		on_rotate = signs_lib.wallmounted_rotate,
