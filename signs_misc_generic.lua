@@ -146,8 +146,7 @@ for _, s in ipairs(street_signs.big_sign_sizes) do
 			selection_box = cbox,
 			mesh = "street_signs_generic_highway_"..size..".obj",
 			tiles = {
-				"street_signs_generic_highway_front_"..size.."_"..color..".png",
-				"street_signs_generic_highway_back_"..size..".png",
+				"street_signs_generic_highway_"..size.."_"..color..".png",
 				"street_signs_generic_highway_edges.png"
 			},
 			default_color = defc,
@@ -165,7 +164,8 @@ for _, s in ipairs(street_signs.big_sign_sizes) do
 				mesh = "street_signs_generic_highway_"..size.."_entity.obj",
 				yaw = signs_lib.wallmounted_yaw
 			},
-			allow_widefont = true
+			allow_widefont = true,
+			allow_onpole = true
 		})
 
 		minetest.register_alias("street_signs:sign_highway_widefont_"..size.."_"..color,
