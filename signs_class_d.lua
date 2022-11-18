@@ -1,6 +1,5 @@
 -- Class D signs
-local S = signs_lib.gettext
-local groups = table.copy(signs_lib.standard_steel_groups)
+local has_screwdriver_mod = minetest.get_modpath("screwdriver")
 
 local sgroups = table.copy(signs_lib.standard_steel_groups)
 sgroups.not_in_creative_inventory = 1
@@ -21,9 +20,9 @@ local flip_facedir = {
 	[2] = 1,
 }
 
+
 local function rotate(pos, node, user, mode)
-	if not signs_lib.can_modify(pos, user)
-	  or mode ~= screwdriver.ROTATE_FACE then
+	if not signs_lib.can_modify(pos, user) or (has_screwdriver_mod and mode ~= screwdriver.ROTATE_FACE) then
 		return false
 	end
 	minetest.swap_node(pos, {name = node.name, param2 = flip_facedir[node.param2] or 0})
@@ -32,7 +31,7 @@ local function rotate(pos, node, user, mode)
 	return true
 end
 
-local function disable_apn(foo)
+local function disable_apn()
 	return
 end
 
