@@ -1,7 +1,5 @@
 -- Convert old road/streets modpack signs to street_signs versions
 
-local S = street_signs.gettext
-
 if minetest.get_modpath("infrastructure") then
 	local signs_equiv = {
 		["infrastructure:road_sign_stop"]              = "street_signs:sign_stop",
@@ -14,7 +12,7 @@ if minetest.get_modpath("infrastructure") then
 
 	local old_signs = {}
 
-	for old, new in pairs(signs_equiv) do
+	for old in pairs(signs_equiv) do
 		minetest.unregister_item(old)
 		if not string.find(old, "on_post") then
 			minetest.clear_craft({output = old})

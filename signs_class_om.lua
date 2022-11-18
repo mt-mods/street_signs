@@ -1,6 +1,5 @@
 -- Class-OM signs
 
-local S = signs_lib.gettext
 local cbox = signs_lib.make_selection_boxes(12, 36, nil)
 
 for _, d in ipairs({"l", "c", "r"}) do

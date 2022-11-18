@@ -1,6 +1,5 @@
 -- Class-R signs
 
-local S = signs_lib.gettext
 local cbox = signs_lib.make_selection_boxes(36, 36)
 
 signs_lib.register_sign("street_signs:sign_stop", {

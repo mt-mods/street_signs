@@ -8,10 +8,9 @@
 
 street_signs = {}
 street_signs.path = minetest.get_modpath(minetest.get_current_modname())
-screwdriver = screwdriver or {}
 
 -- Load support for intllib.
-local S, NS = dofile(street_signs.path .. "/intllib.lua")
+local S = dofile(street_signs.path .. "/intllib.lua")
 street_signs.lbm_restore_nodes = {}
 
 street_signs.big_sign_sizes = {
@@ -46,7 +45,7 @@ minetest.register_lbm({
 	name = "street_signs:restore_sign_text",
 	label = "Restore sign text",
 	run_at_every_load = true,
-	action = function(pos, node)
+	action = function(pos)
 		street_signs.update_sign(pos)
 	end
 })

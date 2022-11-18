@@ -1,5 +1,4 @@
 -- Misc./Generic signs
-local S = signs_lib.gettext
 local cbox = signs_lib.make_selection_boxes(36, 36)
 
 signs_lib.register_sign("street_signs:sign_warning_3_line", {
@@ -127,20 +126,20 @@ for _, s in ipairs(street_signs.big_sign_sizes) do
 	local vscale = s[5]
 	local xoffs =  s[6]
 	local yoffs =  s[7]
-	local cbox = {
-		type = "wallmounted",
-		wall_side = s[8],
-		wall_top =    { -s[8][3], -s[8][1], s[8][2], -s[8][6], -s[8][4], s[8][5] },
-		wall_bottom = {  s[8][3],  s[8][1], s[8][2],  s[8][6],  s[8][4], s[8][5] }
-	}
+
 	for _, c in ipairs(street_signs.big_sign_colors) do
 		local color = c[1]
 		local defc = c[2]
-		
+
 		signs_lib.register_sign("street_signs:sign_highway_"..size.."_"..color, {
 			description = "Generic highway sign ("..nlines.."-line, "..size..", "..color..")",
 			inventory_image = "street_signs_generic_highway_"..size.."_"..color.."_inv.png",
-			selection_box = cbox,
+			selection_box = {
+				type = "wallmounted",
+				wall_side = s[8],
+				wall_top =    { -s[8][3], -s[8][1], s[8][2], -s[8][6], -s[8][4], s[8][5] },
+				wall_bottom = {  s[8][3],  s[8][1], s[8][2],  s[8][6],  s[8][4], s[8][5] }
+			},
 			mesh = "street_signs_generic_highway_"..size.."_wall.obj",
 			tiles = {
 				"street_signs_generic_highway_"..size.."_"..color..".png",

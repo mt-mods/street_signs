@@ -1,5 +1,4 @@
 -- Class-M signs
-local S = signs_lib.gettext
 local cbox = signs_lib.make_selection_boxes(36, 36)
 
 local sgroups = table.copy(signs_lib.standard_steel_groups)

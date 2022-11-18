@@ -46,7 +46,6 @@ minetest.register_craft({
 for _, c in ipairs(street_signs.big_sign_colors) do
 
 	local color = c[1]
-	local defc =  c[2]
 	local dye1 =  c[3]
 	local dye2 =  c[4]
 
@@ -108,7 +107,6 @@ if minetest.get_modpath("signs_lib") then
 	for _, c in ipairs(street_signs.big_sign_colors) do
 
 		local color = c[1]
-		local defc =  c[2]
 
 		minetest.register_craft({
 			output = "street_signs:sign_highway_small_"..color,
